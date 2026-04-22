@@ -43,7 +43,7 @@ router.post('/changelog/add', isAuthenticated, isAdmin, async (req, res) => {
 
         if (!title || lines.length === 0) {
             req.flash('error_msg', 'Title dan detail changelog wajib diisi.');
-            return res.redirect('/admin/index');
+            return res.redirect(303, '/admin/index');
         }
 
         await Changelog.create({
@@ -54,11 +54,11 @@ router.post('/changelog/add', isAuthenticated, isAdmin, async (req, res) => {
         });
 
         req.flash('success_msg', 'Changelog berhasil ditambahkan.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     } catch (error) {
         console.log(error);
         req.flash('error_msg', 'Gagal menambahkan changelog.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     }
 });
 
@@ -72,7 +72,7 @@ router.post('/changelog/edit/:id', isAuthenticated, isAdmin, async (req, res) =>
 
         if (!title || lines.length === 0) {
             req.flash('error_msg', 'Title dan detail changelog wajib diisi.');
-            return res.redirect('/admin/index');
+            return res.redirect(303, '/admin/index');
         }
 
         await Changelog.findByIdAndUpdate(req.params.id, {
@@ -83,11 +83,11 @@ router.post('/changelog/edit/:id', isAuthenticated, isAdmin, async (req, res) =>
         });
 
         req.flash('success_msg', 'Changelog berhasil diperbarui.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     } catch (error) {
         console.log(error);
         req.flash('error_msg', 'Gagal memperbarui changelog.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     }
 });
 
@@ -95,11 +95,11 @@ router.post('/changelog/delete/:id', isAuthenticated, isAdmin, async (req, res) 
     try {
         await Changelog.findByIdAndDelete(req.params.id);
         req.flash('success_msg', 'Changelog berhasil dihapus.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     } catch (error) {
         console.log(error);
         req.flash('error_msg', 'Gagal menghapus changelog.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     }
 });
 
@@ -115,11 +115,11 @@ router.post('/invite/add', isAuthenticated, isAdmin, async (req, res) => {
             createdBy: req.user.username
         });
         req.flash('success_msg', 'Invite link berhasil dibuat.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     } catch (error) {
         console.log(error);
         req.flash('error_msg', 'Gagal membuat invite link.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     }
 });
 
@@ -128,16 +128,16 @@ router.post('/invite/toggle/:id', isAuthenticated, isAdmin, async (req, res) => 
         const invite = await InviteLink.findById(req.params.id);
         if (!invite) {
             req.flash('error_msg', 'Invite link tidak ditemukan.');
-            return res.redirect('/admin/index');
+            return res.redirect(303, '/admin/index');
         }
         invite.isActive = !invite.isActive;
         await invite.save();
         req.flash('success_msg', 'Status invite link diperbarui.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     } catch (error) {
         console.log(error);
         req.flash('error_msg', 'Gagal mengubah status invite link.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     }
 });
 
@@ -145,11 +145,11 @@ router.post('/invite/delete/:id', isAuthenticated, isAdmin, async (req, res) => 
     try {
         await InviteLink.findByIdAndDelete(req.params.id);
         req.flash('success_msg', 'Invite link berhasil dihapus.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     } catch (error) {
         console.log(error);
         req.flash('error_msg', 'Gagal menghapus invite link.');
-        return res.redirect('/admin/index');
+        return res.redirect(303, '/admin/index');
     }
 });
 

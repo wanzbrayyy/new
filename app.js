@@ -139,11 +139,11 @@ app.post('/profile', async (req, res, next) => {
     let checkUser = await checkUsername(username);
     if (checkUser) {
          req.flash('error_msg', 'Username already exists.');
-         return res.redirect('/profile');
+         return res.redirect(303, '/profile');
     } else {
     if (username !== null) await User.updateOne({email: email}, {username: username})
          req.flash('success_msg', 'Succesfully changed username');
-         return res.redirect('/profile')
+         return res.redirect(303, '/profile')
     }
 })
 
