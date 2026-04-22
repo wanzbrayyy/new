@@ -1,16 +1,36 @@
 const { cekKey, limitAdd, isLimit } = require('../database/db');
 const { sleep } = require('../lib/function')
 
-const knights = require("knights-canvas")
-const DIG = require('discord-image-generation')
+let knights = null
+try {
+    knights = require("knights-canvas")
+} catch (error) {
+    console.warn('[WARN] knights-canvas disabled:', error.message)
+}
+let DIG = null
+try {
+    DIG = require('discord-image-generation')
+} catch (error) {
+    console.warn('[WARN] discord-image-generation disabled:', error.message)
+}
 let Caxinha = null
 try {
     Caxinha = require('caxinha')
 } catch (error) {
     console.warn('[WARN] caxinha disabled:', error.message)
 }
-const removebg = require('removebg-id')
-const yuricanvas = require("yuri-canvas")
+let removebg = null
+try {
+    removebg = require('removebg-id')
+} catch (error) {
+    console.warn('[WARN] removebg-id disabled:', error.message)
+}
+let yuricanvas = null
+try {
+    yuricanvas = require("yuri-canvas")
+} catch (error) {
+    console.warn('[WARN] yuri-canvas disabled:', error.message)
+}
 const fs = require('fs')
 const path = require('path')
 
@@ -28,6 +48,42 @@ function ensureCaxinha() {
         throw err
     }
     return Caxinha
+}
+
+function ensureKnights() {
+    if (!knights) {
+        const err = new Error('Creator image engine is unavailable on this server')
+        err.status = 503
+        throw err
+    }
+    return knights
+}
+
+function ensureDIG() {
+    if (!DIG) {
+        const err = new Error('Discord image generation engine is unavailable on this server')
+        err.status = 503
+        throw err
+    }
+    return DIG
+}
+
+function ensureRemoveBg() {
+    if (!removebg) {
+        const err = new Error('Remove background engine is unavailable on this server')
+        err.status = 503
+        throw err
+    }
+    return removebg
+}
+
+function ensureYuriCanvas() {
+    if (!yuricanvas) {
+        const err = new Error('Creator text canvas engine is unavailable on this server')
+        err.status = 503
+        throw err
+    }
+    return yuricanvas
 }
 
 function sendCreatorError(res, err) {

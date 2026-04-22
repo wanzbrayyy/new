@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node app.js"
   },
+  "engines": {
+    "node": "20.x"
+  },
   "keywords": [
     "mongodb",
     "nodejs",
@@ -23,8 +26,6 @@
     "connect-flash": "^0.1.1",
     "connect-mongo": "^6.0.0",
     "cookie-parser": "^1.4.6",
-    "discanvas": "^2.0.3",
-    "discord-image-generation": "^1.4.25",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-ejs-layouts": "^2.5.1",
@@ -36,7 +37,6 @@
     "genshin": "^1.2.4",
     "image-to-pdf": "^3.0.2",
     "jsdom": "^24.0.0",
-    "knights-canvas": "^1.3.7-a",
     "memorystore": "^1.6.7",
     "moment-timezone": "^0.5.45",
     "mongoose": "^7.6.0",
@@ -48,9 +48,14 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "qs": "^6.15.1",
-    "removebg-id": "^2.0.1",
     "request": "^2.88.2",
-    "scrape-primbon": "^1.1.0",
+    "scrape-primbon": "^1.1.0"
+  },
+  "optionalDependencies": {
+    "discanvas": "^2.0.3",
+    "discord-image-generation": "^1.4.25",
+    "knights-canvas": "^1.3.7-a",
+    "removebg-id": "^2.0.1",
     "yuri-canvas": "^4.0.6"
   }
 }
