@@ -37,6 +37,101 @@ function sendToolsError(res, err) {
     return res.status(status).send({ status, message, result: 'error' })
 }
 
+function cleanText(value = '') {
+    return String(value).replace(/\s+/g, ' ').trim()
+}
+
+function normalizeBoolean(value) {
+    return ['1', 'true', 'yes', 'y', 'on'].includes(String(value || '').toLowerCase())
+}
+
+function getCommentMockTheme(platform) {
+    const themes = {
+        tiktok: {
+            platform: 'tiktok',
+            label: 'TikTok Mock Comment',
+            accent: '#ff0050',
+            secondary: '#00f2ea',
+            surface: '#111111',
+            text: '#ffffff',
+            handlePrefix: '@'
+        },
+        instagram: {
+            platform: 'instagram',
+            label: 'Instagram Mock Comment',
+            accent: '#fd1d1d',
+            secondary: '#fcb045',
+            surface: '#ffffff',
+            text: '#111827',
+            handlePrefix: '@'
+        },
+        youtube: {
+            platform: 'youtube',
+            label: 'YouTube Mock Comment',
+            accent: '#ff0000',
+            secondary: '#111111',
+            surface: '#ffffff',
+            text: '#0f0f0f',
+            handlePrefix: '@'
+        },
+        x: {
+            platform: 'x',
+            label: 'X Mock Comment',
+            accent: '#111111',
+            secondary: '#1d9bf0',
+            surface: '#0f1419',
+            text: '#e7e9ea',
+            handlePrefix: '@'
+        }
+    }
+    return themes[platform] || themes.tiktok
+}
+
+async function commentMockResponse(req, res, platform) {
+    try {
+        const apikey = req.query.apikey
+        await validateApiKey(apikey)
+
+        const theme = getCommentMockTheme(platform)
+        const displayName = cleanText(req.query.displayName || req.query.name || 'New Coding')
+        const username = cleanText(req.query.username || 'newcoding')
+        const comment = cleanText(req.query.comment || req.query.text || 'Write your comment preview here.')
+        const likes = Math.max(0, Number(req.query.likes || 0) || 0)
+        const verified = normalizeBoolean(req.query.verified)
+        const timeLabel = cleanText(req.query.time || 'now')
+        const avatar = cleanText(req.query.avatar || 'https://ui-avatars.com/api/?name=New+Coding&background=111827&color=ffffff')
+        const replyTo = cleanText(req.query.replyTo || '')
+
+        return res.status(200).json({
+            status: 200,
+            result: {
+                platform: theme.platform,
+                title: theme.label,
+                profile: {
+                    display_name: displayName,
+                    username: `${theme.handlePrefix}${username.replace(/^@+/, '')}`,
+                    verified,
+                    avatar
+                },
+                meta: {
+                    likes,
+                    time: timeLabel,
+                    reply_to: replyTo || null
+                },
+                comment,
+                preview_theme: {
+                    accent: theme.accent,
+                    secondary: theme.secondary,
+                    surface: theme.surface,
+                    text: theme.text
+                }
+            }
+        })
+    } catch (err) {
+        return sendToolsError(res, err)
+    }
+}
+
 async function validateApiKey(apikey) {
     if (!apikey) {
         const err = new Error('apikey parameter cannot be empty')
@@ -174,10 +269,30 @@ async function jsconfuser(req, res) {
     }
 }
 
+async function tiktokcommentmock(req, res) {
+    return commentMockResponse(req, res, 'tiktok')
+}
+
+async function instagramcommentmock(req, res) {
+    return commentMockResponse(req, res, 'instagram')
+}
+
+async function youtubecommentmock(req, res) {
+    return commentMockResponse(req, res, 'youtube')
+}
+
+async function xcommentmock(req, res) {
+    return commentMockResponse(req, res, 'x')
+}
+
 module.exports = {
     emailvalidate,
     jsonvalidate,
     base64encode,
     base64decode,
-    jsconfuser
+    jsconfuser,
+    tiktokcommentmock,
+    instagramcommentmock,
+    youtubecommentmock,
+    xcommentmock
 }

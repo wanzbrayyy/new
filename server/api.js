@@ -11,7 +11,7 @@ const { husbu, loli, milf, cosplay, randomimage, waifu, neko, shinobu, megumin, 
 const { nh, nhpdf, nhsearch, nhpopular, nhlatest, nhrandom, doujindesu, doujinsearch, doujinlatest, komiklatest, komikdl, mynimesearch, mynimelatest, hanimelatest, animeinfo, kusonime, storyanime, nekopoi, nekopoiLatest } = require('../features/animanga')
 const { melolohome, melolodetail, melolosearch, melologuides, meloloranking, melolocategory, melolodownload, melolodownloadfile } = require('../features/melolo')
 const { ghstalk, igstalk, wattpad, npminfo } = require('../features/stalking')
-const { emailvalidate, jsonvalidate, base64encode, base64decode, jsconfuser } = require('../features/tools')
+const { emailvalidate, jsonvalidate, base64encode, base64decode, jsconfuser, tiktokcommentmock, instagramcommentmock, youtubecommentmock, xcommentmock } = require('../features/tools')
 const { tebakgambar, asahotak, susunkata, siapakahaku, tebakkata, tebakkalimat, tebaktebakan, tekateki, tebakbendera, tebakkimia, caklontong, tebaklirik, family100, tebakkabupaten, truthdare } = require('../features/entertainment')
 const { artinama, artimimpi, ramaljodoh, nomorhoki, zodiak, kecocokan_nama, kecocokan_nama_pasangan, tanggal_jadian_pernikahan, sifat_usaha_bisnis, rejeki_hoki_weton, pekerjaan_weton_lahir, ramalan_nasib, cek_potensi_penyakit, arti_kartu_tarot, petung_hari_baik, hari_sangar_taliwangke, primbon_hari_naas, rahasia_naga_hari, primbon_arah_rejeki, ramalan_peruntungan, weton_jawa, sifat_karakter_tanggal_lahir, potensi_keberuntungan, primbon_memancing_ikan, seberapagay } = require('../features/primbon')
 const { ppcouple, wangy, wangy2, nenen, simp, sherk, quotes, quotesnime, gi, giwp, herodetail, herolist } = require('../features/other')
@@ -107,6 +107,10 @@ if (process.env.VERCEL) {
      router.get('/base64encode', base64encode)
      router.get('/base64decode', base64decode)
      router.get('/jsconfuser', jsconfuser)
+     router.get('/tiktokcommentmock', tiktokcommentmock)
+     router.get('/instagramcommentmock', instagramcommentmock)
+     router.get('/youtubecommentmock', youtubecommentmock)
+     router.get('/xcommentmock', xcommentmock)
      
      //Random Image
      router.get('/randomimage/waifu', waifu)

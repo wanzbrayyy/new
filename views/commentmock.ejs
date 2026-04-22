@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Social comment preview tool for platform layout testing.">
+  <meta name="author" content="New Coding">
+  <title>New Coding</title>
+  <link rel="apple-touch-icon" href="/images/new-coding-logo.jpg" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/new-coding-logo.jpg" />
+  <link rel="icon" href="/images/new-coding-logo.jpg" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/nucleo-icons.css" />
+  <link rel="stylesheet" href="/css/alli.min.css" />
+  <link rel="stylesheet" href="/css/icone.css" />
+  <link rel="stylesheet" href="/css/black-dashboard.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    .mock-shell { display:grid; grid-template-columns: minmax(320px, 440px) minmax(320px, 1fr); gap: 20px; }
+    .mock-form-card, .mock-preview-card { border-radius: 18px; }
+    .mock-preview-card { min-height: 520px; position: relative; overflow: hidden; }
+    .mock-badge { display:inline-flex; align-items:center; gap:8px; background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.12); padding:6px 12px; border-radius:999px; font-size:12px; }
+    .comment-preview { border-radius: 22px; padding: 22px; box-shadow: 0 20px 60px rgba(0,0,0,.18); position: relative; }
+    .comment-header { display:flex; gap:14px; align-items:flex-start; }
+    .comment-avatar { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink:0; }
+    .comment-name-row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+    .comment-name { font-weight: 700; }
+    .comment-username, .comment-meta { opacity: .72; font-size: 13px; }
+    .verified-dot { width: 18px; height: 18px; border-radius: 50%; display:inline-flex; align-items:center; justify-content:center; font-size:10px; color:#fff; }
+    .comment-body { margin-top: 12px; line-height: 1.65; white-space: pre-wrap; }
+    .comment-footer { margin-top: 18px; display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size: 13px; opacity:.8; }
+    .json-box { margin-top:20px; padding:16px; border-radius:14px; background:#111827; color:#e5e7eb; max-height:240px; overflow:auto; font-size:12px; line-height:1.6; }
+    @media (max-width: 991px) {
+      .mock-shell { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="sidebar-mini white-content">
+  <div class="wrapper">
+    <div class="sidebar" data="red">
+      <div class="sidebar-wrapper">
+        <div class="logo text-center">
+          <a href="/" class="simple-text logo-normal" style="font-size: large; display:inline-flex; align-items:center; gap:10px;">
+            <img src="/images/new-coding-logo.jpg" alt="New Coding" style="width:34px;height:34px;border-radius:12px;object-fit:cover;">
+            <span>New Coding</span>
+          </a>
+        </div>
+        <ul class="nav">
+          <li><a href="/docs"><i class="fal fa-alien-monster"></i><p>Dashboard</p></a></li>
+          <li><a href="/pricing"><i class="fi-rr-money"></i><p>Pricing</p></a></li>
+          <li><a href="/changelog"><i class="fi-rr-refresh"></i><p>Changelog</p></a></li>
+          <hr>
+          <li><a href="/downloader"><i class="fa fa-fw fa-download"></i><p>Downloader</p></a></li>
+          <li><a href="/searching"><i class="fa fa-fw fa-search"></i><p>Searching</p></a></li>
+          <li class="active"><a href="/tools"><i class="fa fa-fw fa-tools"></i><p>Tools</p></a></li>
+          <li><a href="/randomimage"><i class="far fa-images"></i><p>Random Images</p></a></li>
+          <li><a href="/animanga"><i class="fi-rr-crown"></i><p>AniManga</p></a></li>
+          <li><a href="/melolo"><i class="fa fa-fw fa-film"></i><p>Melolo</p></a></li>
+          <li><a href="/stalking"><i class="fa fa-fw fa-female"></i><p>Stalking</p></a></li>
+          <li><a href="/creator"><i class="fi-rr-magic-wand"></i><p>Creator</p></a></li>
+          <li><a href="/entertainment"><i class="fa fa-fw fa-smile"></i><p>Entertainment</p></a></li>
+          <li><a href="/primbon"><i class="fa fa-fw fa-user-md"></i><p>Primbon</p></a></li>
+          <li><a href="/other"><i class="fa fa-fw fa-random"></i><p>Other</p></a></li>
+          <li><a href="/ai"><i class="fa fa-fw fa-robot"></i><p>AI</p></a></li>
+          <% if (isAdmin) { %>
+          <li><a href="/admin/listuser"><i class="far fa-male"></i><p>List User</p></a></li>
+          <li style="margin-bottom: 8rem !important;"><a href="/admin/index"><i class="far fa-feather"></i><p>Admin</p></a></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" style="top: 0px;">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#"><%= pageTitle %></a>
+          </div>
+        </div>
+      </nav>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title"><%= pageTitle %></h4>
+              </div>
+              <div class="card-body">
+                <div class="mock-shell">
+                  <div class="card mock-form-card">
+                    <div class="card-body">
+                      <div class="form-group">
+                        <label>Display Name</label>
+                        <input id="displayName" type="text" class="form-control" value="New Coding">
+                      </div>
+                      <div class="form-group">
+                        <label>Username</label>
+                        <input id="usernameInput" type="text" class="form-control" value="newcoding">
+                      </div>
+                      <div class="form-group">
+                        <label>Comment</label>
+                        <textarea id="commentInput" class="form-control" rows="5">This comment generator preview is ready to use.</textarea>
+                      </div>
+                      <div class="form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                        <div class="form-group">
+                          <label>Likes</label>
+                          <input id="likesInput" type="number" min="0" class="form-control" value="120">
+                        </div>
+                        <div class="form-group">
+                          <label>Time</label>
+                          <input id="timeInput" type="text" class="form-control" value="now">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Reply To</label>
+                        <input id="replyToInput" type="text" class="form-control" value="">
+                      </div>
+                      <div class="form-group">
+                        <label>Avatar URL</label>
+                        <input id="avatarInput" type="text" class="form-control" value="https://ui-avatars.com/api/?name=New+Coding&background=111827&color=ffffff">
+                      </div>
+                      <div class="form-check mb-3">
+                        <label class="form-check-label">
+                          <input id="verifiedInput" class="form-check-input" type="checkbox">
+                          Verified
+                          <span class="form-check-sign"><span class="check"></span></span>
+                        </label>
+                      </div>
+                      <button id="previewBtn" class="btn btn-primary btn-block">Preview JSON</button>
+                      <a href="/tools" class="btn btn-default btn-block">Back To Tools</a>
+                    </div>
+                  </div>
+                  <div class="card mock-preview-card">
+                    <div class="card-body">
+                      <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:18px;">
+                        <div class="mock-badge"><i class="far fa-eye"></i> Live Preview</div>
+                        <div class="mock-badge"><%= platform %></div>
+                      </div>
+                      <div id="previewMount"></div>
+                      <pre id="jsonMount" class="json-box"></pre>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/core/jquery.min.js"></script>
+  <script src="/js/core/popper.min.js"></script>
+  <script src="/js/core/bootstrap.min.js"></script>
+  <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/js/black-dashboard.min.js"></script>
+  <script src="/js/script.js"></script>
+  <script>
+    const platform = "<%= platform %>";
+    const apikey = "<%= apikey %>";
+    const endpointMap = {
+      tiktok: "/api/tiktokcommentmock",
+      instagram: "/api/instagramcommentmock",
+      youtube: "/api/youtubecommentmock",
+      x: "/api/xcommentmock"
+    };
+
+    function escapeHtml(value) {
+      return String(value || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function renderPreview(data) {
+      const result = data.result;
+      const verified = result.profile.verified
+        ? `<span class="verified-dot" style="background:${result.preview_theme.secondary};">✓</span>`
+        : "";
+
+      const replyTo = result.meta.reply_to
+        ? `<div class="comment-meta">Reply to ${escapeHtml(result.meta.reply_to)}</div>`
+        : "";
+
+      document.getElementById("previewMount").innerHTML = `
+        <div class="comment-preview" style="background:${result.preview_theme.surface};color:${result.preview_theme.text};">
+          <div class="comment-header">
+            <img class="comment-avatar" src="${escapeHtml(result.profile.avatar)}" alt="avatar" onerror="this.src='https://ui-avatars.com/api/?name=Mock&background=111827&color=ffffff'">
+            <div style="flex:1;">
+              <div class="comment-name-row">
+                <span class="comment-name">${escapeHtml(result.profile.display_name)}</span>
+                ${verified}
+                <span class="comment-username">${escapeHtml(result.profile.username)}</span>
+              </div>
+              <div class="comment-meta">${escapeHtml(result.meta.time)}</div>
+              ${replyTo}
+              <div class="comment-body">${escapeHtml(result.comment)}</div>
+              <div class="comment-footer">
+                <span><i class="far fa-heart"></i> ${escapeHtml(result.meta.likes)}</span>
+                <span>${escapeHtml(result.title)}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById("jsonMount").textContent = JSON.stringify(data, null, 2);
+    }
+
+    async function loadPreview() {
+      const params = new URLSearchParams({
+        apikey,
+        displayName: document.getElementById("displayName").value,
+        username: document.getElementById("usernameInput").value,
+        comment: document.getElementById("commentInput").value,
+        likes: document.getElementById("likesInput").value,
+        time: document.getElementById("timeInput").value,
+        replyTo: document.getElementById("replyToInput").value,
+        avatar: document.getElementById("avatarInput").value,
+        verified: document.getElementById("verifiedInput").checked ? "true" : "false"
+      });
+
+      const response = await fetch(`${endpointMap[platform]}?${params.toString()}`);
+      const data = await response.json();
+      renderPreview(data);
+    }
+
+    document.getElementById("previewBtn").addEventListener("click", loadPreview);
+    loadPreview();
+  </script>
+</body>
+</html>

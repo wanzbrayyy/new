@@ -191,6 +191,25 @@ app.get('/tools', isAuthenticated, async (req, res) => {
   })
 })
 
+function renderCommentMockPage(platform, title) {
+  return async (req, res) => {
+    let { apikey, username, email } = req.user
+    res.render('commentmock', {
+      username,
+      apikey,
+      email,
+      layout: 'commentmock',
+      platform,
+      pageTitle: title
+    })
+  }
+}
+
+app.get('/tools/tiktok-comment-mock', isAuthenticated, renderCommentMockPage('tiktok', 'TikTok Mock Comment'))
+app.get('/tools/instagram-comment-mock', isAuthenticated, renderCommentMockPage('instagram', 'Instagram Mock Comment'))
+app.get('/tools/youtube-comment-mock', isAuthenticated, renderCommentMockPage('youtube', 'YouTube Mock Comment'))
+app.get('/tools/x-comment-mock', isAuthenticated, renderCommentMockPage('x', 'X Mock Comment'))
+
 app.get('/randomimage', isAuthenticated, async (req, res) => { 
   let { apikey, username, email } = req.user
   res.render('randomimage', {
