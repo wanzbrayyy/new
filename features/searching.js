@@ -1,15 +1,17 @@
 const { getBuffer } = require('../lib/function')
 const { cekKey, limitAdd, isLimit } = require('../database/db');
 const ch = require('../lib/scraper')
+const { searchSpotifyTracks } = require('../lib/spotify')
 
 const fs = require('fs')
+const os = require('os')
 const path = require('path')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const scraper = require('@bochilteam/scraper')
 
 __path = process.cwd()
-const TMP_DIR = path.join(__path, 'tmp')
+const TMP_DIR = path.join(os.tmpdir(), 'ww')
 
 function ensureDir(dirPath) {
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true })
@@ -278,6 +280,10 @@ async function wikipediaSearch(query) {
         pageid: first.pageid,
         url: `https://id.wikipedia.org/?curid=${first.pageid}`
     }
+}
+
+async function spotifySearch(query) {
+    return searchSpotifyTracks(query, 8)
 }
 
      async function pinterest(req, res) {
@@ -582,6 +588,24 @@ async function wikipediaSearch(query) {
          }
      }
 
+     async function spotifysearch(req, res) {
+         try {
+            let query = req.query.query
+            let apikey = req.query.apikey
+            if (!query) return res.status(400).send({ status: 400, message: 'query parameter cannot be empty', result: 'error' })
+            if (!apikey) return res.status(400).send({ status: 400, message: 'apikey parameter cannot be empty', result: 'error' })
+            let check = await cekKey(apikey)
+            if (!check) return res.status(404).send({ status: 404, message: `apikey ${apikey} not found, please register first.` })
+            let limit = await isLimit(apikey);
+            if (limit) return res.status(429).send({ status: 429, message: 'requests limit exceeded (100 req / day), call owner for an upgrade to premium', result: 'error' })
+            limitAdd(apikey);
+            let result = ensureResult(await spotifySearch(query), 'Spotify track result not found')
+              res.status(200).json({ status: 200, result })
+         } catch(err) {
+              return sendSearchError(res, err)
+         }
+     }
+
 module.exports = { 
    pinterest, 
    sticker,
@@ -598,5 +622,6 @@ module.exports = {
    gimage,
    ytsearch,
    google,
-   wiki
+   wiki,
+   spotifysearch
 }

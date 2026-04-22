@@ -3,18 +3,20 @@ const { dl } = require('../lib/aiovideodl')
 const { cekKey, limitAdd, isLimit } = require('../database/db');
 const { getInfo, fbdl } = require('../lib/downloader.js')
 const { insta } = require('../lib/instagram.js')
+const { getSpotifyResource } = require('../lib/spotify')
 const { ytv, yta } = require('../lib/ytdl')
 const ch = require('../lib/scraper')
 const scraper = require('@bochilteam/scraper')
 
 const fs = require('fs')
+const os = require('os')
 const path = require('path')
 const axios = require('axios')
 const cheerio = require('cheerio')
 const fetch = require('node-fetch')
 
 __path = process.cwd()
-const TMP_DIR = path.join(__path, 'tmp')
+const TMP_DIR = path.join(os.tmpdir(), 'ww')
 
 function ensureDir(dirPath) {
     if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true })
@@ -225,6 +227,17 @@ async function downloadPinterest(url) {
     const result = [...new Set(matches)]
     return { result: ensureValue(result, 'Pinterest media not found') }
 }
+
+async function downloadSpotify(url) {
+    const resource = await getSpotifyResource(url)
+    return {
+        ...resource,
+        downloadable_tracks: resource.tracks.filter(track => track.preview_url),
+        note: resource.tracks.some(track => !track.preview_url)
+            ? 'Some Spotify items do not provide preview audio URLs.'
+            : null
+    }
+}
      
      async function tiktok(req, res) {
          try {
@@ -278,9 +291,9 @@ async function downloadPinterest(url) {
             limitAdd(apikey);
             let hasil = await downloadTikTok(url)
             let data = await getBuffer(hasil.nowm)
-             ensureDir(TMP_DIR)
-             await fs.writeFileSync(path.join(TMP_DIR, 'tiktok.mp4'), data)
-             await res.sendFile(path.join(TMP_DIR, 'tiktok.mp4'))
+             res.setHeader('Content-Type', 'video/mp4')
+             res.setHeader('Content-Disposition', 'inline; filename=\"tiktok.mp4\"')
+             return res.send(data)
          } catch(err) {
              return sendDownloaderError(res, err)
          }
@@ -664,6 +677,24 @@ async function downloadPinterest(url) {
               return sendDownloaderError(res, err)
           }
      }
+
+     async function spotifydl(req, res) {
+         try {
+            let url = req.query.url
+            let apikey = req.query.apikey
+            if (!url) return res.status(400).send({ status: 400, message: 'url parameter cannot be empty', result: 'error' })
+            if (!apikey) return res.status(400).send({ status: 400, message: 'apikey parameter cannot be empty', result: 'error' })
+            let check = await cekKey(apikey)
+            if (!check) return res.status(404).send({ status: 404, message: `apikey ${apikey} not found, please register first.` })
+            let limit = await isLimit(apikey);
+            if (limit) return res.status(429).send({ status: 429, message: 'requests limit exceeded (100 req / day), call owner for an upgrade to premium', result: 'error' })
+            limitAdd(apikey);
+            let result = await downloadSpotify(url)
+              res.status(200).json({ status: 200, result })
+         } catch(err) {
+              return sendDownloaderError(res, err)
+         }
+     }
      
 
 module.exports = { 
@@ -689,5 +720,6 @@ module.exports = {
    telesticker,
    facebook,
    aiovideodl,
-   pixiv
+   pixiv,
+   spotifydl
 }

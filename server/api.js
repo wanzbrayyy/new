@@ -5,8 +5,8 @@ const fs = require('fs')
 const { cekKey, checkLimit } = require('../database/db')
 const { getFile } = require('../lib/function')
 const { cekUsername, cekRequest, cekEmail } = require('../database/premium')
-const { tiktok, tiktok2, tiktoknowm, youtube, twitter, twitter2, zippyshare, xnxxdl, xnxxsearch, pindl, mediafire, soundcloud, instagram, instagram2, instagram3, instastory, sfiledl, anonfiledl, stickerDl, telesticker, facebook, aiovideodl, pixiv } = require('../features/downloader')
-const { pinterest, sticker, pixivsearch, happymod, sfilesearch, konachan, alphacoders, wallpapercave, domainsearch, cekdomain, steleSearch, stickerline, gimage, ytsearch, google, wiki  } = require('../features/searching')
+const { tiktok, tiktok2, tiktoknowm, youtube, twitter, twitter2, zippyshare, xnxxdl, xnxxsearch, pindl, mediafire, soundcloud, instagram, instagram2, instagram3, instastory, sfiledl, anonfiledl, stickerDl, telesticker, facebook, aiovideodl, pixiv, spotifydl } = require('../features/downloader')
+const { pinterest, sticker, pixivsearch, happymod, sfilesearch, konachan, alphacoders, wallpapercave, domainsearch, cekdomain, steleSearch, stickerline, gimage, ytsearch, google, wiki, spotifysearch  } = require('../features/searching')
 const { husbu, loli, milf, cosplay, randomimage, waifu, neko, shinobu, megumin, bully, cuddle, cry, hug, awoo, kiss, lick, slap } = require('../features/randomimage')
 const { nh, nhpdf, nhsearch, nhpopular, nhlatest, nhrandom, doujindesu, doujinsearch, doujinlatest, komiklatest, komikdl, mynimesearch, mynimelatest, hanimelatest, animeinfo, kusonime, storyanime, nekopoi, nekopoiLatest } = require('../features/animanga')
 const { ghstalk, igstalk, wattpad, npminfo } = require('../features/stalking')
@@ -65,6 +65,7 @@ try {
      router.get('/fbdl', facebook)
      router.get('/aiovideodl', aiovideodl)
      router.get('/pixiv', pixiv)
+     router.get('/spotifydl', spotifydl)
      
      // Searching
      router.get('/pinterest', pinterest)
@@ -83,6 +84,7 @@ try {
      router.get('/ytsearch', ytsearch)
      router.get('/google', google)
      router.get('/wikipedia', wiki)
+     router.get('/spotifysearch', spotifysearch)
      
      //Random Image
      router.get('/randomimage/waifu', waifu)
