@@ -60,8 +60,22 @@ app.use(session({
     checkPeriod: 86400000
   }),
 }));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+const formBodyParser = express.urlencoded({ extended: true });
+const jsonBodyParser = express.json();
+
+app.use((req, res, next) => {
+  if (req.path === '/api' || req.path.startsWith('/api/')) {
+    return next();
+  }
+  return formBodyParser(req, res, next);
+});
+
+app.use((req, res, next) => {
+  if (req.path === '/api' || req.path.startsWith('/api/')) {
+    return next();
+  }
+  return jsonBodyParser(req, res, next);
+});
 app.use(cookieParser());
 
 app.use(passport.initialize());
