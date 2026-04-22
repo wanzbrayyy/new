@@ -16,10 +16,15 @@ const { ppcouple, wangy, wangy2, nenen, simp, sherk, quotes, quotesnime, gi, giw
 const { ling26, nemotron3super120b, gptoss120b, glm45air, nemotron3nano30b, nemotronnano12bvl, qwen3coder, llamaNemotronEmbedVl } = require('../features/ai')
 
 let creatorFeatures = null
-try {
-    creatorFeatures = require('../features/creator')
-} catch (error) {
-    console.warn('[WARN] Creator features disabled:', error.message)
+if (process.env.VERCEL) {
+    console.warn('[WARN] Creator features disabled on Vercel to reduce function bundle size')
+} else {
+    try {
+        const runtimeRequire = eval('require')
+        creatorFeatures = runtimeRequire('../features/creator')
+    } catch (error) {
+        console.warn('[WARN] Creator features disabled:', error.message)
+    }
 }
 
      router.get('/checkapikey', async (req, res) => {
