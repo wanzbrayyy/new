@@ -436,6 +436,70 @@ async function getMeloloCategoryData(slug, page = 1) {
     }
 }
 
+async function getMeloloSearchData(query, lang = 'id') {
+    const normalizedQuery = cleanText(query)
+    const locale = String(lang || 'id').toLowerCase() === 'en' ? 'en' : 'id'
+    const searchPath = locale === 'en' ? '/search' : `/${locale}/search`
+    const url = `${MELOLO_BASE}${searchPath}?q=${encodeURIComponent(normalizedQuery)}`
+    const $ = await loadMelolo(url)
+
+    const dramaSummary = cleanText($('div').filter((_, el) => /Drama Pendek Terkait/i.test(cleanText($(el).text()))).first().text()) || null
+    const articleSummary = cleanText($('div').filter((_, el) => /Artikel Terkait/i.test(cleanText($(el).text()))).first().text()) || null
+
+    const dramas = []
+    $('a[href*="/dramas/"]').each((_, el) => {
+        const link = $(el)
+        const href = link.attr('href')
+        const absoluteHref = absoluteUrl(href)
+        const title = cleanText(link.text()) || cleanText(link.attr('aria-label'))
+        if (!href || !absoluteHref || !title || /\/ep\d+$/i.test(href)) return
+        if (dramas.some(item => item.detail_url === absoluteHref)) return
+
+        const card = link.closest('div.w-full.relative.bg-white.rounded-lg, div.w-full.relative.bg-white.rounded-xl, div.relative.bg-white.rounded-lg, div.self-stretch.bg-white.rounded-xl, div.bg-white.rounded-lg')
+        dramas.push({
+            title,
+            detail_url: absoluteHref,
+            image: absoluteUrl(card.find('img').first().attr('src') || link.closest('a').find('img').first().attr('src')),
+            rating: cleanText(card.find('div.text-order-blue.text-xs, div.text-orange-500.font-bold, div.text-orange-500.text-base.font-bold').first().text()) || null,
+            description: cleanText(card.find('div.text-Text.text-sm, div.text-slate-500.text-sm, div.opacity-90.text-sm').last().text()) || null,
+            categories: [...new Set(card.find('a[href*="/category/"]').map((__, categoryLink) => cleanText($(categoryLink).text())).get().filter(Boolean))],
+            watch_url: absoluteUrl(card.find('a[href*="/dramas/"]').filter((__, anchor) => /\/ep\d+$/i.test($(anchor).attr('href') || '')).first().attr('href'))
+        })
+    })
+
+    const articles = []
+    $('a[href*="/guides/"]').each((_, el) => {
+        const link = $(el)
+        const href = link.attr('href')
+        const absoluteHref = absoluteUrl(href)
+        const title = cleanText(link.text()) || cleanText(link.attr('aria-label'))
+        if (!href || !absoluteHref || !title || /\/guides\/?$/i.test(href)) return
+        if (articles.some(item => item.url === absoluteHref)) return
+
+        const card = link.closest('div.w-full.relative.bg-white.rounded-lg, div.relative.bg-white.rounded-lg, div.bg-white.rounded-lg, div.rounded-lg')
+        articles.push({
+            title,
+            url: absoluteHref,
+            image: absoluteUrl(card.find('img').first().attr('src') || link.closest('a').find('img').first().attr('src')),
+            description: cleanText(card.find('div.text-Text.text-sm, div.text-slate-500.text-sm').last().text()) || null,
+            publish_date: cleanText(card.find('div').filter((__, node) => /\d{4}-\d{2}-\d{2}/.test(cleanText($(node).text()))).first().text()) || null
+        })
+    })
+
+    return {
+        source: url,
+        query: normalizedQuery,
+        locale,
+        title: cleanText($('title').first().text()) || null,
+        summary: {
+            dramas: dramaSummary,
+            articles: articleSummary
+        },
+        dramas,
+        articles
+    }
+}
+
 function sendError(res, err) {
     const status = err.status || err.response?.status || 500
     const message = err.message || 'An internal error occurred while fetching Melolo data'
@@ -514,6 +578,17 @@ async function melolodownload(req, res) {
     }
 }
 
+async function melolosearch(req, res) {
+    try {
+        const query = await validateRequest(req, 'query')
+        const lang = req.query.lang || 'id'
+        const result = await getMeloloSearchData(query, lang)
+        return res.status(200).json({ status: 200, result })
+    } catch (err) {
+        return sendError(res, err)
+    }
+}
+
 async function melolodownloadfile(req, res) {
     try {
         const input = await validateRequest(req, req.query.url ? 'url' : 'slug')
@@ -542,6 +617,7 @@ async function melolodownloadfile(req, res) {
 module.exports = {
     melolohome,
     melolodetail,
+    melolosearch,
     melologuides,
     meloloranking,
     melolocategory,

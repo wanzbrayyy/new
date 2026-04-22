@@ -9,7 +9,7 @@ const { tiktok, tiktok2, tiktoknowm, youtube, twitter, twitter2, zippyshare, xnx
 const { pinterest, sticker, pixivsearch, happymod, sfilesearch, konachan, alphacoders, wallpapercave, domainsearch, cekdomain, steleSearch, stickerline, gimage, ytsearch, google, tiktoksearch, xsearch, instagramsearch, facebooksearch, threadssearch, redditsearch, telegramsearch, linkedinsearch, wiki, spotifysearch  } = require('../features/searching')
 const { husbu, loli, milf, cosplay, randomimage, waifu, neko, shinobu, megumin, bully, cuddle, cry, hug, awoo, kiss, lick, slap } = require('../features/randomimage')
 const { nh, nhpdf, nhsearch, nhpopular, nhlatest, nhrandom, doujindesu, doujinsearch, doujinlatest, komiklatest, komikdl, mynimesearch, mynimelatest, hanimelatest, animeinfo, kusonime, storyanime, nekopoi, nekopoiLatest } = require('../features/animanga')
-const { melolohome, melolodetail, melologuides, meloloranking, melolocategory, melolodownload, melolodownloadfile } = require('../features/melolo')
+const { melolohome, melolodetail, melolosearch, melologuides, meloloranking, melolocategory, melolodownload, melolodownloadfile } = require('../features/melolo')
 const { ghstalk, igstalk, wattpad, npminfo } = require('../features/stalking')
 const { emailvalidate, jsonvalidate, base64encode, base64decode, jsconfuser } = require('../features/tools')
 const { tebakgambar, asahotak, susunkata, siapakahaku, tebakkata, tebakkalimat, tebaktebakan, tekateki, tebakbendera, tebakkimia, caklontong, tebaklirik, family100, tebakkabupaten, truthdare } = require('../features/entertainment')
@@ -151,6 +151,7 @@ if (process.env.VERCEL) {
      // Melolo
      router.get('/melolohome', melolohome)
      router.get('/melolodetail', melolodetail)
+     router.get('/melolosearch', melolosearch)
      router.get('/melolodownload', melolodownload)
      router.get('/melolodownloadfile', melolodownloadfile)
      router.get('/melologuides', melologuides)

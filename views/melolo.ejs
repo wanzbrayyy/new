@@ -67,7 +67,7 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title">Melolo Documentation</h4>
-                <p class="card-category">Endpoint khusus Melolo untuk home, detail drama, guides, ranking, dan category.</p>
+                <p class="card-category">Endpoint khusus Melolo untuk home, search, detail drama, guides, ranking, dan category.</p>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -95,6 +95,13 @@
                         <td class="text-center">apikey, url</td>
                         <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
                         <td class="text-center"><a class="text-success btn-sm btn-icon" href="/api/melolodetail?url=https://melolo.com/dramas/shoot-my-heart-my-mafia-boss&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>Melolo Search</td>
+                        <td class="text-center" style="color: #00f2c3">GET</td>
+                        <td class="text-center">apikey, query, lang</td>
+                        <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                        <td class="text-center"><a class="text-success btn-sm btn-icon" href="/api/melolosearch?query=r&lang=id&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
                       </tr>
                       <tr>
                         <td>Melolo Proxy MP4</td>
