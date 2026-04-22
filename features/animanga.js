@@ -28,6 +28,89 @@ const JINA_BASE = 'https://r.jina.ai/http://'
 const imageToPdf = topdf.convert || topdf.default || topdf
 const TMP_DIR = path.join(__path, 'tmp')
 const PUBLIC_TMP_DIR = path.join(__path, 'public', 'tmp')
+const MELOLO_BASE = 'https://melolo.com'
+
+function cleanText(value = '') {
+    return String(value).replace(/\s+/g, ' ').trim()
+}
+
+function toAbsoluteUrl(url) {
+    if (!url) return null
+    try {
+        return new URL(url, MELOLO_BASE).toString()
+    } catch {
+        return url
+    }
+}
+
+function parseMeloloFeaturedSection($, section) {
+    return section.find('div.min-w-82.self-stretch').map((_, el) => {
+        const card = $(el)
+        const titleAnchor = card.find('a[href*="/dramas/"]').filter((__, anchor) => !/\/ep\d+$/i.test($(anchor).attr('href') || '')).first()
+        const watchAnchor = card.find('a[href*="/dramas/"]').filter((__, anchor) => /\/ep\d+$/i.test($(anchor).attr('href') || '')).first()
+
+        return {
+            title: cleanText(titleAnchor.text()) || null,
+            category: cleanText(card.find('a[href*="/category/"]').first().text()) || null,
+            description: cleanText(card.find('div.opacity-90').first().text()) || null,
+            detail_url: toAbsoluteUrl(titleAnchor.attr('href')),
+            watch_url: toAbsoluteUrl(watchAnchor.attr('href')),
+            image: toAbsoluteUrl(card.find('img').last().attr('src'))
+        }
+    }).get().filter(item => item.title && item.detail_url)
+}
+
+function parseMeloloGridSection($, section, cardSelector) {
+    return section.find(cardSelector).map((_, el) => {
+        const card = $(el)
+        const titleAnchor = card.find('a[href*="/dramas/"]').filter((__, anchor) => !/\/ep\d+$/i.test($(anchor).attr('href') || '')).last()
+        const watchAnchor = card.find('a[href*="/dramas/"]').filter((__, anchor) => /\/ep\d+$/i.test($(anchor).attr('href') || '')).first()
+        const rating = cleanText(card.find('div.text-order-blue.text-xs, div.text-orange-500.font-bold').first().text()) || null
+        const episodeText = cleanText(card.find('div').filter((__, div) => /Eps/i.test($(div).text())).first().text()) || null
+        const description = cleanText(card.find('div.text-slate-500.text-sm, div.opacity-90.text-sm').last().text()) || null
+
+        return {
+            title: cleanText(titleAnchor.text()) || null,
+            category: cleanText(card.find('a[href*="/category/"]').first().text()) || null,
+            rating,
+            episodes: episodeText || null,
+            description,
+            detail_url: toAbsoluteUrl(titleAnchor.attr('href')),
+            watch_url: toAbsoluteUrl(watchAnchor.attr('href')),
+            image: toAbsoluteUrl(card.find('img').first().attr('src'))
+        }
+    }).get().filter(item => item.title && item.detail_url)
+}
+
+async function getMeloloHome() {
+    const response = await axios.get(`${MELOLO_BASE}/`, {
+        timeout: 20000,
+        headers: {
+            'User-Agent': 'Mozilla/5.0',
+            'Accept-Language': 'en-US,en;q=0.9'
+        }
+    })
+    const $ = cheerio.load(String(response.data))
+    const sections = $('main > div')
+    const heroSection = sections.eq(0)
+    const latestSection = sections.eq(1)
+    const romanceSection = sections.eq(2)
+    const revengeSection = sections.eq(3)
+
+    return {
+        source: MELOLO_BASE,
+        title: cleanText($('title').first().text()) || null,
+        description: cleanText($('meta[name="description"]').attr('content')) || null,
+        hero: {
+            title: cleanText(heroSection.find('h1').first().text()) || null,
+            description: cleanText(heroSection.find('h1').first().parent().find('div').last().text()) || null
+        },
+        featured: parseMeloloFeaturedSection($, heroSection),
+        latest_releases: parseMeloloGridSection($, latestSection, 'div.self-stretch.bg-white.rounded-xl'),
+        popular_romance: parseMeloloGridSection($, romanceSection, 'div.min-w-45.bg-white.rounded-lg'),
+        popular_revenge: parseMeloloGridSection($, revengeSection, 'div.w-full.relative.p-4.bg-white.rounded-xl')
+    }
+}
 
 function detectLanguage(title = '', tags = []) {
     const titleLower = title.toLowerCase()
@@ -746,6 +829,25 @@ async function buildPublicPdf(imageUrls, rawTitle, prefix = 'animanga') {
               res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
          }
      }
+
+     async function melolohome(req, res) {
+         try {
+            let apikey = req.query.apikey
+            if (!apikey) return res.status(400).send({ status: 400, message: 'apikey parameter cannot be empty', result: 'error' })
+            let check = await cekKey(apikey)
+            if (!check) return res.status(404).send({ status: 404, message: `apikey ${apikey} not found, please register first.` })
+            let limit = await isLimit(apikey);
+            if (limit) return res.status(429).send({ status: 429, message: 'requests limit exceeded (100 req / day), call owner for an upgrade to premium', result: 'error' })
+            limitAdd(apikey);
+            let result = await getMeloloHome()
+              res.status(200).json({ status: 200, result })
+         } catch(err) {
+              console.log(err)
+              const status = err.response?.status || 500
+              const message = err.message || 'An internal error occurred while fetching Melolo home'
+              res.status(status).send({ status, message, result: 'error' })
+         }
+     }
      
      async function animeinfo(req, res) {
          try {
@@ -853,6 +955,7 @@ module.exports = {
    mynimesearch,
    mynimelatest,
    hanimelatest,
+   melolohome,
    animeinfo,
    kusonime,
    storyanime,

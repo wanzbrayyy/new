@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="Developer tools and validators for New Coding API. new-coding新しいコーディング edition.">
+  <meta name="author" content="New Coding">
+  <title> New Coding </title>
+  <link rel="apple-touch-icon" href="/images/new-coding-logo.jpg" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/new-coding-logo.jpg" />
+  <link rel="icon" href="/images/new-coding-logo.jpg" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/nucleo-icons.css" />
+  <link rel="stylesheet" href="/css/alli.min.css" />
+  <link rel="stylesheet" href="/css/icone.css" />
+  <link rel="stylesheet" href="/css/black-dashboard.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+
+<body class="sidebar-mini white-content">
+  <div class="wrapper">
+    <div class="sidebar" data="red">
+      <div class="sidebar-wrapper">
+        <div class="logo text-center">
+          <a href="/" class="simple-text logo-normal" style="font-size: large; display:inline-flex; align-items:center; gap:10px;">
+            <img src="/images/new-coding-logo.jpg" alt="New Coding" style="width:34px;height:34px;border-radius:12px;object-fit:cover;">
+            <span>New Coding</span>
+          </a>
+        </div>
+        <ul class="nav">
+          <li><a href="/docs"><i class="fal fa-alien-monster"></i><p>Dashboard</p></a></li>
+          <li><a href="/pricing"><i class="fi-rr-money"></i><p>Pricing</p></a></li>
+          <li><a href="/changelog"><i class="fi-rr-refresh"></i><p>Changelog</p></a></li>
+          <hr>
+          <li><a href="/downloader"><i class="fa fa-fw fa-download"></i><p>Downloader</p></a></li>
+          <li><a href="/searching"><i class="fa fa-fw fa-search"></i><p>Searching</p></a></li>
+          <li class="active"><a href="/tools"><i class="fa fa-fw fa-tools"></i><p>Tools</p></a></li>
+          <li><a href="/randomimage"><i class="far fa-images"></i><p>Random Images</p></a></li>
+          <li><a href="/animanga"><i class="fi-rr-crown"></i><p>AniManga</p></a></li>
+          <li><a href="/melolo"><i class="fa fa-fw fa-film"></i><p>Melolo</p></a></li>
+          <li><a href="/stalking"><i class="fa fa-fw fa-female"></i><p>Stalking</p></a></li>
+          <li><a href="/creator"><i class="fi-rr-magic-wand"></i><p>Creator</p></a></li>
+          <li><a href="/entertainment"><i class="fa fa-fw fa-smile"></i><p>Entertainment</p></a></li>
+          <li><a href="/primbon"><i class="fa fa-fw fa-user-md"></i><p>Primbon</p></a></li>
+          <li><a href="/other"><i class="fa fa-fw fa-random"></i><p>Other</p></a></li>
+          <li><a href="/ai"><i class="fa fa-fw fa-robot"></i><p>AI</p></a></li>
+          <% if (isAdmin) { %>
+          <li><a href="/admin/listuser"><i class="far fa-male"></i><p>List User</p></a></li>
+          <li style="margin-bottom: 8rem !important;"><a href="/admin/index"><i class="far fa-feather"></i><p>Admin</p></a></li>
+          <% } %>
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" style="top: 0px;">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="#">new-coding新しいコーディング</a>
+          </div>
+        </div>
+      </nav>
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">new-coding新しいコーディング</h4>
+                <p class="card-category">Utility aman untuk development, encode, validasi, dan obfuscation umum dengan preset super high.</p>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class="text-primary">
+                      <tr>
+                        <th>Feature</th>
+                        <th class="text-center">Method</th>
+                        <th class="text-center">Parameter</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-center">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Email Validate</td>
+                        <td class="text-center" style="color: #00f2c3">GET</td>
+                        <td class="text-center">apikey, email</td>
+                        <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                        <td class="text-center"><a class="text-success btn-sm btn-icon" href="/api/emailvalidate?email=hello@example.com&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>JSON Validate</td>
+                        <td class="text-center" style="color: #00f2c3">GET</td>
+                        <td class="text-center">apikey, text</td>
+                        <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                        <td class="text-center"><a class="text-success btn-sm btn-icon" href="/api/jsonvalidate?text=%7B%22name%22%3A%22new%20coding%22%7D&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>Base64 Encode</td>
+                        <td class="text-center" style="color: #00f2c3">GET</td>
+                        <td class="text-center">apikey, text</td>
+                        <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                        <td class="text-center"><a class="text-success btn-sm btn-icon" href="/api/base64encode?text=New%20Coding&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>Base64 Decode</td>
+                        <td class="text-center" style="color: #00f2c3">GET</td>
+                        <td class="text-center">apikey, text</td>
+                        <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                        <td class="text-center"><a class="text-success btn-sm btn-icon" href="/api/base64decode?text=TmV3IENvZGluZw==&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                      </tr>
+                      <tr>
+                        <td>new-coding新しいコーディング JS Confuser</td>
+                        <td class="text-center" style="color: #00f2c3">GET</td>
+                        <td class="text-center">apikey, text, target</td>
+                        <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                        <td class="text-center"><a class="text-success btn-sm btn-icon" href="/api/jsconfuser?text=console.log(%27new-coding%E6%96%B0%E3%81%97%E3%81%84%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%27)&target=node&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/core/jquery.min.js"></script>
+  <script src="/js/core/popper.min.js"></script>
+  <script src="/js/core/bootstrap.min.js"></script>
+  <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/js/black-dashboard.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>

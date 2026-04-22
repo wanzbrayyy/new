@@ -6,10 +6,12 @@ const { cekKey, checkLimit } = require('../database/db')
 const { getFile } = require('../lib/function')
 const { cekUsername, cekRequest, cekEmail } = require('../database/premium')
 const { tiktok, tiktok2, tiktoknowm, youtube, twitter, twitter2, zippyshare, xnxxdl, xnxxsearch, pindl, mediafire, soundcloud, instagram, instagram2, instagram3, instastory, sfiledl, anonfiledl, stickerDl, telesticker, facebook, aiovideodl, pixiv, spotifydl } = require('../features/downloader')
-const { pinterest, sticker, pixivsearch, happymod, sfilesearch, konachan, alphacoders, wallpapercave, domainsearch, cekdomain, steleSearch, stickerline, gimage, ytsearch, google, wiki, spotifysearch  } = require('../features/searching')
+const { pinterest, sticker, pixivsearch, happymod, sfilesearch, konachan, alphacoders, wallpapercave, domainsearch, cekdomain, steleSearch, stickerline, gimage, ytsearch, google, tiktoksearch, xsearch, instagramsearch, facebooksearch, threadssearch, redditsearch, telegramsearch, linkedinsearch, wiki, spotifysearch  } = require('../features/searching')
 const { husbu, loli, milf, cosplay, randomimage, waifu, neko, shinobu, megumin, bully, cuddle, cry, hug, awoo, kiss, lick, slap } = require('../features/randomimage')
 const { nh, nhpdf, nhsearch, nhpopular, nhlatest, nhrandom, doujindesu, doujinsearch, doujinlatest, komiklatest, komikdl, mynimesearch, mynimelatest, hanimelatest, animeinfo, kusonime, storyanime, nekopoi, nekopoiLatest } = require('../features/animanga')
+const { melolohome, melolodetail, melologuides, meloloranking, melolocategory, melolodownload, melolodownloadfile } = require('../features/melolo')
 const { ghstalk, igstalk, wattpad, npminfo } = require('../features/stalking')
+const { emailvalidate, jsonvalidate, base64encode, base64decode, jsconfuser } = require('../features/tools')
 const { tebakgambar, asahotak, susunkata, siapakahaku, tebakkata, tebakkalimat, tebaktebakan, tekateki, tebakbendera, tebakkimia, caklontong, tebaklirik, family100, tebakkabupaten, truthdare } = require('../features/entertainment')
 const { artinama, artimimpi, ramaljodoh, nomorhoki, zodiak, kecocokan_nama, kecocokan_nama_pasangan, tanggal_jadian_pernikahan, sifat_usaha_bisnis, rejeki_hoki_weton, pekerjaan_weton_lahir, ramalan_nasib, cek_potensi_penyakit, arti_kartu_tarot, petung_hari_baik, hari_sangar_taliwangke, primbon_hari_naas, rahasia_naga_hari, primbon_arah_rejeki, ramalan_peruntungan, weton_jawa, sifat_karakter_tanggal_lahir, potensi_keberuntungan, primbon_memancing_ikan, seberapagay } = require('../features/primbon')
 const { ppcouple, wangy, wangy2, nenen, simp, sherk, quotes, quotesnime, gi, giwp, herodetail, herolist } = require('../features/other')
@@ -88,8 +90,23 @@ if (process.env.VERCEL) {
      router.get('/gimage', gimage)
      router.get('/ytsearch', ytsearch)
      router.get('/google', google)
+     router.get('/tiktoksearch', tiktoksearch)
+     router.get('/xsearch', xsearch)
+     router.get('/instagramsearch', instagramsearch)
+     router.get('/facebooksearch', facebooksearch)
+     router.get('/threadssearch', threadssearch)
+     router.get('/redditsearch', redditsearch)
+     router.get('/telegramsearch', telegramsearch)
+     router.get('/linkedinsearch', linkedinsearch)
      router.get('/wikipedia', wiki)
      router.get('/spotifysearch', spotifysearch)
+
+     // Tools
+     router.get('/emailvalidate', emailvalidate)
+     router.get('/jsonvalidate', jsonvalidate)
+     router.get('/base64encode', base64encode)
+     router.get('/base64decode', base64decode)
+     router.get('/jsconfuser', jsconfuser)
      
      //Random Image
      router.get('/randomimage/waifu', waifu)
@@ -130,6 +147,15 @@ if (process.env.VERCEL) {
      router.get('/storyanime', storyanime)
      router.get('/nekopoi', nekopoi)
      router.get('/nekopoilatest', nekopoiLatest)
+
+     // Melolo
+     router.get('/melolohome', melolohome)
+     router.get('/melolodetail', melolodetail)
+     router.get('/melolodownload', melolodownload)
+     router.get('/melolodownloadfile', melolodownloadfile)
+     router.get('/melologuides', melologuides)
+     router.get('/meloloranking', meloloranking)
+     router.get('/melolocategory', melolocategory)
      
      // Stalking
      router.get('/stalkgithub', ghstalk)

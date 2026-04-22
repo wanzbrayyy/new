@@ -167,6 +167,16 @@ app.get('/searching', isAuthenticated, async (req, res) => {
   });
 });
 
+app.get('/tools', isAuthenticated, async (req, res) => {
+  let { apikey, username, email } = req.user
+  res.render('tools', {
+    username,
+    apikey,
+    email,
+    layout: 'tools'
+  })
+})
+
 app.get('/randomimage', isAuthenticated, async (req, res) => { 
   let { apikey, username, email } = req.user
   res.render('randomimage', {
@@ -186,6 +196,16 @@ app.get('/animanga', isAuthenticated, async (req, res) => {
     layout: 'animanga'
   });
 });
+
+app.get('/melolo', isAuthenticated, async (req, res) => {
+  let { apikey, username, email } = req.user
+  res.render('melolo', {
+    username,
+    apikey,
+    email,
+    layout: 'melolo'
+  })
+})
 
 app.get('/stalking', isAuthenticated, async (req, res) => { 
   let { apikey, username, email } = req.user
