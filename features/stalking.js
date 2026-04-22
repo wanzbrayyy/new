@@ -9,6 +9,13 @@ const fetch = require('node-fetch')
 
 __path = process.cwd()
 
+function sendStalkError(res, err) {
+    const status = err.status || err.response?.status || 500
+    const message = err.message || 'An internal error occurred while fetching stalk data'
+    console.log(err)
+    return res.status(status).send({ status, message, result: 'error' })
+}
+
      async function ghstalk(req, res) {
          try {
             let username = req.query.username
@@ -23,8 +30,7 @@ __path = process.cwd()
             let result = await ch.ghstalk(username)
               res.status(200).json({ status: 200, result: result })
          } catch(err) {
-              console.log(err)
-              res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
+              return sendStalkError(res, err)
          }
      }
      
@@ -42,8 +48,7 @@ __path = process.cwd()
             let result = await igProfile(username)
               res.status(200).json({ status: 200, result: result })
          } catch(err) {
-              console.log(err)
-              res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
+              return sendStalkError(res, err)
          }
      }
      
@@ -61,8 +66,7 @@ __path = process.cwd()
             let result = await ch.WattpadUser(username)
               res.status(200).json({ status: 200, result: result })
          } catch(err) {
-              console.log(err)
-              res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
+              return sendStalkError(res, err)
          }
      }
      
@@ -83,8 +87,7 @@ __path = process.cwd()
               res.status(200).json({ status: 200, result: result })
             })
          } catch(err) {
-              console.log(err)
-              res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
+              return sendStalkError(res, err)
          }
      }
     
