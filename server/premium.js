@@ -1,11 +1,11 @@
 const express = require('express');
 const { checkUsername, resetAllLimit } = require('../database/db');
 const { addPremium, deletePremium, checkPremium, changeKey, resetOneLimit, resetTodayReq } = require('../database/premium');
-const { isAuthenticated } = require('../lib/auth');
+const { isAuthenticated, isAdmin } = require('../lib/auth');
 const { limitCount, tokens } = require('../lib/settings');
 const router = express.Router();
 
-router.post('/add', isAuthenticated, async (req, res) => {
+router.post('/add', isAuthenticated, isAdmin, async (req, res) => {
     let { username, expired, customKey, token } = req.body;
     if (token != tokens) {
         req.flash('error_msg', 'Invalid Token');
@@ -28,7 +28,7 @@ router.post('/add', isAuthenticated, async (req, res) => {
     }
 })
 
-router.post('/delete', isAuthenticated, async  (req, res) => {
+router.post('/delete', isAuthenticated, isAdmin, async  (req, res) => {
     let { username, token } = req.body;
     if (token != tokens) {
         req.flash('error_msg', 'Invalid Token');
@@ -66,7 +66,7 @@ router.post('/custom', isAuthenticated, async (req, res) => {
     }
 })
 
-router.post('/limit',  isAuthenticated, async  (req, res) => {
+router.post('/limit',  isAuthenticated, isAdmin, async  (req, res) => {
     let { username, token } = req.body;
     if (token != tokens) {
         req.flash('error_msg', 'Invalid Token');
@@ -83,7 +83,7 @@ router.post('/limit',  isAuthenticated, async  (req, res) => {
     }
 })
 
-router.post('/resetall', isAuthenticated, async  (req, res) => {
+router.post('/resetall', isAuthenticated, isAdmin, async  (req, res) => {
     let { username } = req.user
     let { token } = req.body;
     if (token != tokens) {

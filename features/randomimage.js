@@ -102,7 +102,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -123,7 +123,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -144,7 +144,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -165,7 +165,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -186,7 +186,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -207,7 +207,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -228,7 +228,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -249,7 +249,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -270,7 +270,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -291,7 +291,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -312,7 +312,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
      
@@ -333,7 +333,7 @@ __path = process.cwd()
              res.send(await buffer.buffer())
          }).catch(e => {
          console.log(e)
-         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/ultimareall or wa.me/6288286421519', result: 'error' })
+         res.status(500).send({ status: 500, message: 'An internal error occurred. Please report via telegram at https://t.me/maverick_dark or wa.me/6288801074059', result: 'error' })
       })
      }
    

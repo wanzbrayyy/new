@@ -4,335 +4,360 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="A REST APIs website that provides a wide variety of features for developers.">
-  <meta name="robots" content="archive, follow, imageindex, index, odp, snippet, translate">
-  <meta name="author" content="Wanzofc">
-  <title> Admin - REST API </title>
-  <meta property="og:site_name" name="og:site_name" content="Wanzofc APIs">
-  <meta property="og:title" name="og:title" content="Wanzofc - REST APIs">
-  <meta property="og:url" name="og:url" content="http://wa.me/62895402567224">
-  <meta property="og:image" name="og:image" content="https://img101.pixhost.to/images/341/551053112_wanzofc.jpg">
-  <meta property="og:description" name="og:description" content="A REST APIs website that provides a wide variety of features for developers.">
-  <link rel="apple-touch-icon" href="/images/Ashborns.jpg" />
-  <link rel="shortcut icon" type="image/x-icon" href="/images/Ashborns.jpg" />
-  <link rel="icon" href="/images/Ashborns.jpg" />
-  <meta name="msapplication-TileColor" content="#ffffff" />
-  <meta name="msapplication-TileImage" content="/images/Ashborns.jpg" />
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="canonical" href="/" />
+  <title>admin</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <link rel="stylesheet" href="/css/nucleo-icons.css" />
   <link rel="stylesheet" href="/css/alli.min.css" />
   <link rel="stylesheet" href="/css/icone.css" />
   <link rel="stylesheet" href="/css/black-dashboard.min.css" />
   <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous"/>
+  <style>
+    :root {
+      --brand-logo: url('https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg');
+    }
+    .admin-card {
+      background: rgba(17, 23, 35, 0.72);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 18px;
+    }
+    .admin-card h4,
+    .admin-card h5,
+    .admin-card p,
+    .admin-card li,
+    .admin-card label {
+      text-transform: lowercase;
+    }
+    .admin-entry {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,.03);
+      border: 1px solid rgba(255,255,255,.05);
+      margin-bottom: 14px;
+    }
+    .admin-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .admin-pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,242,195,.12);
+      color: #00f2c3;
+      font-size: 12px;
+      text-transform: lowercase;
+    }
+    .brand-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-box img {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+    .invite-link {
+      display: block;
+      color: #9fe9d5;
+      word-break: break-all;
+      margin-top: 6px;
+      font-size: 13px;
+    }
+    .inline-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 12px 0;
+      color: rgba(255,255,255,.75);
+      text-transform: lowercase;
+    }
+  </style>
 </head>
-
 <body class="sidebar-mini white-content">
-    <div class="wrapper">
-      <div class="sidebar" data="red">
-  <div class="sidebar-wrapper">
-    <div class="logo text-center">
-      <a href="/" class="simple-text logo-normal" style="font-size: large;">
-           WANZOFC - API
-        </a>
-     </div>
-    <ul class="nav">
-      <li>
-        <a href="/docs">
-          <i class="fal fa-alien-monster"></i>
-          <p>Dashboard</p>
-        </a>
-      </li>
-      <li>
-      <a href="/pricing">
-       <i class="fi-rr-money"></i>
-        <p>Pricing</p>
-       </a>
-      </li>
-      <li>
-      <a href="/changelog">
-       <i class="fi-rr-refresh"></i>
-        <p>Changelog</p>
-       </a>
-      </li>
-     <hr>
-      <li>
-        <a href="/downloader">
-          <i class="fa fa-fw fa-download"></i>
-          <p>Downloader</p>
-        </a>
-      </li>
-      <li>
-        <a href="/searching">
-          <i class="fa fa-fw fa-search"></i>
-          <p>Searching</p>
-        </a>
-      </li>
-      <li>
-        <a href="/randomimage">
-          <i class="far fa-images"></i>
-          <p>Random Images</p>
-        </a>
-      </li>
-      <li>
-        <a href="/animanga">
-          <i class="fi-rr-crown"></i>
-          <p>AniManga</p>
-        </a>
-      </li>
-      <li>
-        <a href="/stalking">
-          <i class="fa fa-fw fa-female"></i>
-          <p>Stalking</p>
-        </a>
-      </li>
-      <li>
-          <a href="/creator">
-            <i class="fi-rr-magic-wand"></i>
-            <p>Creator</p>
+  <div class="wrapper">
+    <div class="sidebar" data="red">
+      <div class="sidebar-wrapper">
+        <div class="logo text-center">
+          <a href="/" class="simple-text logo-normal brand-box" style="font-size: large;">
+            <img src="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg" alt="New Coding">
+            <span>New Coding</span>
           </a>
-        </li>
-      <li>
-        <a href="/entertainment">
-          <i class="fa fa-fw fa-smile"></i>
-          <p>Entertainment</p>
-        </a>
-      </li>
-      <li>
-      <a href="/primbon">
-          <i class="fa fa-fw fa-user-md"></i>
-          <p>Primbon</p>
-        </a>
-      </li>
-      <li>
-      <a href="/other">
-          <i class="fa fa-fw fa-random"></i>
-          <p>Other</p>
-        </a>
-      </li>
-      <li>
-      <a href="/admin/listuser">
-          <i class="far fa-male"></i>
-          <p>List User</p>
-        </a>
-      </li>
-      <li style="margin-bottom: 8rem !important;" class="active" >
-      <a href="/admin/index">
-          <i class="far fa-feather"></i>
-          <p>Admin</p>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-<div class="main-panel">
- <div class="navbar-minimize-fixed" style="opacity: 0;">
-    <button class="minimize-sidebar btn btn-link btn-just-icon">
-    <i class="tim-icons icon-align-center visible-on-sidebar-regular text-dark"></i>
-    <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-dark"></i>
-  </button>
-</div>
-<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" style="top: 0px;">
-    <div class="container-fluid">
-      <div class="navbar-wrapper">
-        <div class="navbar-minimize d-inline">
-          <button class="minimize-sidebar btn btn-link btn-just-icon" rel="tooltip" data-original-title="Sidebar toggle" data-placement="right" aria-describedby="tooltip723041">
-            <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
-            <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
-          </button>
         </div>
-        <div class="navbar-toggle d-inline">
-          <button type="button" class="navbar-toggler">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-          </button>
-        </div>
-        <a class="navbar-brand" href="#">Admin</a>
-      </div>
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-      </button>
-      <div class="navbar-collapse collapse" id="navigation" style>
-        <ul class="navbar-nav ml-auto text-dark">
-        	<li class="nav-item dropdown no-arrow text-dark">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="tim-icons icon-zoom-split text-dark"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-search p-3 shadow animated--grow-in white-color" aria-labelledby="searchDropdown" style="border: none;">
-                    <form class="navbar-search" action="#" method="GET">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button class="input-group-text" type="submit">
-                                    <i class="tim-icons icon-zoom-split text-dark"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control text-dark" name="q" placeholder="Search" autocomplete="off" required>
-                        </div>
-                    </form>
-                </div>
-            </li>
-            <li class="dropdown nav-item">            	
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <div class="photo">
-                        <img src="/images/loli.png" alt="Profile Photo">
-                    </div>
-                    <b class="caret d-none d-lg-block d-xl-block"></b>
-                    <p class="d-lg-none text-dark"><%= username %></p>
-                </a>
-                <ul class="dropdown-menu dropdown-navbar dropdown-user">
-                    <div class="dropdown-user-scroll scrollbar-outer ">
-                        <li>
-                            <div class="user-box">
-                                <div class="avatar-lg"><img src="/images/loli.png" alt="image profile" class="avatar-img rounded"></div>
-                                <div class="u-text text-dark">
-                                    <h4><%= username %></h4>
-                                    <p></p>
-                                    <p class="text-dark"><%= email %></p>
-                                </div>
-                            </div>
-                          <li>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item text-dark" href="/profile"><i class="far fa-address-card text-success"></i>&nbsp;My Profile</a>                              
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item text-dark" href="/users/logout"><i class="far fa-sign-out text-danger"></i>&nbsp;Logout</a> 
-                          </li>
-                    </div>
-                </ul>                           
-            </li>
-          <li class="separator d-lg-none"></li>
+        <ul class="nav">
+          <li><a href="/docs"><i class="fal fa-alien-monster"></i><p>Dashboard</p></a></li>
+          <li><a href="/pricing"><i class="fi-rr-money"></i><p>Pricing</p></a></li>
+          <li><a href="/changelog"><i class="fi-rr-refresh"></i><p>Changelog</p></a></li>
+          <hr>
+          <li><a href="/downloader"><i class="fa fa-fw fa-download"></i><p>Downloader</p></a></li>
+          <li><a href="/searching"><i class="fa fa-fw fa-search"></i><p>Searching</p></a></li>
+          <li><a href="/randomimage"><i class="far fa-images"></i><p>Random Images</p></a></li>
+          <li><a href="/animanga"><i class="fi-rr-crown"></i><p>AniManga</p></a></li>
+          <li><a href="/stalking"><i class="fa fa-fw fa-female"></i><p>Stalking</p></a></li>
+          <li><a href="/creator"><i class="fi-rr-magic-wand"></i><p>Creator</p></a></li>
+          <li><a href="/entertainment"><i class="fa fa-fw fa-smile"></i><p>Entertainment</p></a></li>
+          <li><a href="/primbon"><i class="fa fa-fw fa-user-md"></i><p>Primbon</p></a></li>
+          <li><a href="/other"><i class="fa fa-fw fa-random"></i><p>Other</p></a></li>
+          <li><a href="/admin/listuser"><i class="far fa-male"></i><p>List User</p></a></li>
+          <li class="active" style="margin-bottom: 8rem !important;"><a href="/admin/index"><i class="far fa-feather"></i><p>Admin</p></a></li>
         </ul>
       </div>
     </div>
-  </nav>
- 
- <div class="content">
-      <div class="card card-round">
-            <div class="card-header ">
-                <div class="row">
-                    <div class="col-sm-6 text-left">
-                        <h5 class="title">Edit Profile</h5>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                            <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                                <input type="radio" name="options" checked>
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Add Premium</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="tim-icons icon-single-02"></i>
-                                </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="1">
-                                <input type="radio" class="d-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Delete Premium</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="fi-rr-password"></i>
-                                </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="2">
-                                <input type="radio" class="d-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Reset Limit</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="fi-rr-flame"></i>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <center>
-            
-           <%- include('../layouts/msg')  %> 
-           <%- include('../layouts/errors')  %> 
-           
-           </center>
-            <div class="card-body" id="usernameemail">
-                <form method="POST" action="/premium/add" class="changeprofile">
-                    <div class="row">
-                        <div class="col-md-12 pr-md-1">
-                            <div class="form-group">
-                                <label>Username</label>
-                                <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off" required>
-                            </div>
-                        <div class="form-group">
-                             <label>Expired</label>
-                              <input type="text" class="form-control" name="expired" placeholder="Expired" autocomplete="off" required>
-                            </div>
-                         <div class="form-group">
-                             <label>Custom Apikey</label>
-                              <input type="text" class="form-control" name="customKey" placeholder="Custom Apikey" autocomplete="off" required>
-                            </div>
-                        <div class="form-group">
-                             <label>Token</label>
-                              <input type="text" class="form-control" name="token" placeholder="Token" autocomplete="off" required>
-                            </div>
-                        </div>
-                        <input type="text" name="changeprofile" value="usernameemail" style="display: none;">
-                        <button type="submit" class="btn btn-fill btn-primary ml-3 inibutton">Add Premium</button>
-                    </div>
-                </form>
-            </div>
-           
-            <div class="card-body" id="password" style="display: none;">
-                <form method="POST" action="/premium/delete" class="changeprofile">
-                    <div class="row">
-                        <div class="col-md-12 pr-md-1">
-                            <div class="form-group">
-                               <label>Username</label>
-                               <input type="text" class="form-control" name="username" placeholder="Username" autocomplete="off" required>
-                            </div>
-                            <div class="form-group">
-                               <label>Token</label>
-                               <input type="text" class="form-control" name="token" placeholder="Token" autocomplete="off" required>
-                            </div>
-                        </div>
-                        <input type="text" name="changeprofile" value="password" style="display: none;">
-                        <button type="submit" class="btn btn-fill btn-primary ml-3 inibutton">Delete Premium</button>
-                    </div>
-                </form>
-            </div>
-            
-            <div class="card-body" id="apikey" style="display: none;">
-                <form method="POST" action="/premium/resetall" class="changeprofile">
-                    <div class="row">
-                        <div class="col-md-12 pr-md-1">
-                            <div class="form-group">
-                               <label>Token</label>
-                               <input type="text" class="form-control" name="token" placeholder="Token" autocomplete="off" required>
-                            </div>
-                        </div>
-                        <input type="text" name="changeprofile" value="apikey" style="display: none;">
-                        <button type="submit" class="btn btn-fill btn-primary ml-3 inibutton">Reset Limit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-       </div>
 
-<footer class="footer fixed-bottom">
-        <div class="copyright text-center my-auto">
-  <span>
-    copyright with <i class="fal fa-heart text-danger"></i> BY WANZOFC -
-  </span>
-  <span>
-    <a id="jam"></a>
-  </span>
-</div>
-        </footer>
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https:////cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" charset="utf-8"></script>
-    <script src="/js/core/jquery.min.js"></script>
-    <script src="/js/core/popper.min.js"></script>
-    <script src="/js/core/bootstrap.min.js"></script>
-    <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/js/plugins/bootstrap-notify.js"></script>
-    <script src="/js/black-dashboard.min.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/swal.js"></script>
+    <div class="main-panel">
+      <div class="navbar-minimize-fixed" style="opacity: 0;">
+        <button class="minimize-sidebar btn btn-link btn-just-icon">
+          <i class="tim-icons icon-align-center visible-on-sidebar-regular text-dark"></i>
+          <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-dark"></i>
+        </button>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" style="top: 0px;">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-minimize d-inline">
+              <button class="minimize-sidebar btn btn-link btn-just-icon">
+                <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
+                <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
+              </button>
+            </div>
+            <div class="navbar-toggle d-inline">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="#">New Coding</a>
+          </div>
+          <div class="navbar-collapse collapse" id="navigation">
+            <ul class="navbar-nav ml-auto text-dark">
+              <li class="dropdown nav-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <div class="photo"><img src="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg" alt="Profile Photo"></div>
+                  <b class="caret d-none d-lg-block d-xl-block"></b>
+                  <p class="d-lg-none text-dark"><%= username %></p>
+                </a>
+                <ul class="dropdown-menu dropdown-navbar dropdown-user">
+                  <div class="dropdown-user-scroll scrollbar-outer ">
+                    <li>
+                      <div class="user-box">
+                        <div class="avatar-lg"><img src="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg" alt="image profile" class="avatar-img rounded"></div>
+                        <div class="u-text text-dark">
+                          <h4><%= username %></h4>
+                          <p class="text-dark"><%= email %></p>
+                        </div>
+                      </div>
+                    <li>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="/profile"><i class="far fa-address-card text-success"></i>&nbsp;My Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="/users/logout"><i class="far fa-sign-out text-danger"></i>&nbsp;Logout</a>
+                    </li>
+                  </div>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <div class="content">
+        <% if (success_msg && success_msg.length) { %>
+          <% success_msg.forEach((msg) => { %>
+            <div class="alert alert-success"><%= msg %></div>
+          <% }) %>
+        <% } %>
+        <% if (error_msg && error_msg.length) { %>
+          <% error_msg.forEach((msg) => { %>
+            <div class="alert alert-danger"><%= msg %></div>
+          <% }) %>
+        <% } %>
+
+        <div class="row">
+          <div class="col-md-4">
+            <div class="card admin-card">
+              <div class="card-body">
+                <h4>premium tools</h4>
+                <p class="mb-4">buat tambah premium, hapus premium, atau reset limit.</p>
+
+                <h5 class="mt-3">add premium</h5>
+                <form method="POST" action="/premium/add">
+                  <label>username</label>
+                  <input type="text" class="form-control" name="username" required>
+                  <label>expired</label>
+                  <input type="text" class="form-control" name="expired" placeholder="30d" required>
+                  <label>custom api key</label>
+                  <input type="text" class="form-control" name="customKey" required>
+                  <label>token</label>
+                  <input type="text" class="form-control" name="token" required>
+                  <button type="submit" class="btn btn-primary btn-round">add premium</button>
+                </form>
+
+                <hr>
+
+                <h5>delete premium</h5>
+                <form method="POST" action="/premium/delete">
+                  <label>username</label>
+                  <input type="text" class="form-control" name="username" required>
+                  <label>token</label>
+                  <input type="text" class="form-control" name="token" required>
+                  <button type="submit" class="btn btn-danger btn-round">delete premium</button>
+                </form>
+
+                <hr>
+
+                <h5>reset all limit</h5>
+                <form method="POST" action="/premium/resetall">
+                  <label>token</label>
+                  <input type="text" class="form-control" name="token" required>
+                  <button type="submit" class="btn btn-info btn-round">reset all</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card admin-card">
+              <div class="card-body">
+                <h4>invite link</h4>
+                <p class="mb-4">buat link daftar dengan limit sendiri, custom apikey boleh atau tidak, dan batas pemakai link.</p>
+
+                <form method="POST" action="/admin/invite/add">
+                  <label>nama link</label>
+                  <input type="text" class="form-control" name="title" placeholder="invite komunitas" required>
+                  <label>limit apikey</label>
+                  <input type="number" class="form-control" name="limit" min="1" value="500" required>
+                  <label>batas pemakai link</label>
+                  <input type="number" class="form-control" name="maxUses" min="1" value="1" required>
+                  <label>custom apikey</label>
+                  <select class="form-control" name="allowCustomKey">
+                    <option value="false">tidak</option>
+                    <option value="true">boleh</option>
+                  </select>
+                  <button type="submit" class="btn btn-primary btn-round">buat link</button>
+                </form>
+
+                <hr>
+
+                <% if (!invites || invites.length === 0) { %>
+                  <p class="mb-0">belum ada invite link.</p>
+                <% } %>
+
+                <% if (invites && invites.length > 0) { %>
+                  <% invites.forEach((invite) => { %>
+                    <div class="admin-entry">
+                      <div class="admin-meta">
+                        <span class="admin-pill"><%= invite.isActive ? 'aktif' : 'nonaktif' %></span>
+                        <span class="admin-pill">limit <%= invite.limit %></span>
+                        <span class="admin-pill"><%= invite.allowCustomKey ? 'custom key boleh' : 'custom key mati' %></span>
+                        <span class="admin-pill"><%= invite.usedCount %>/<%= invite.maxUses %> user</span>
+                      </div>
+                      <h5><%= invite.title %></h5>
+                      <p class="mb-2">dibuat <%= formatDateTime(invite.createdAt) %></p>
+                      <a class="invite-link" href="<%= baseUrl %>/users/register?invite=<%= invite.code %>" target="_blank"><%= baseUrl %>/users/register?invite=<%= invite.code %></a>
+
+                      <div class="inline-actions">
+                        <form method="POST" action="/admin/invite/toggle/<%= invite._id %>">
+                          <button type="submit" class="btn btn-info btn-round"><%= invite.isActive ? 'nonaktifkan' : 'aktifkan' %></button>
+                        </form>
+                        <form method="POST" action="/admin/invite/delete/<%= invite._id %>">
+                          <button type="submit" class="btn btn-danger btn-round">hapus</button>
+                        </form>
+                      </div>
+                    </div>
+                  <% }) %>
+                <% } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="card admin-card">
+              <div class="card-body">
+                <h4>manage changelog</h4>
+                <p class="mb-4">isi changelog bisa ditambah, diedit, dan dihapus dari sini.</p>
+
+                <form method="POST" action="/admin/changelog/add">
+                  <label>title</label>
+                  <input type="text" class="form-control" name="title" required>
+                  <label>category</label>
+                  <select class="form-control" name="category">
+                    <option value="update">update</option>
+                    <option value="feature">feature</option>
+                    <option value="fix">fix</option>
+                    <option value="maintenance">maintenance</option>
+                  </select>
+                  <label>details</label>
+                  <textarea class="form-control" name="details" rows="5" placeholder="satu baris satu poin" required></textarea>
+                  <button type="submit" class="btn btn-success btn-round">save changelog</button>
+                </form>
+
+                <hr>
+
+                <% if (!entries || entries.length === 0) { %>
+                  <p class="mb-0">belum ada data changelog.</p>
+                <% } %>
+
+                <% if (entries && entries.length > 0) { %>
+                  <% entries.forEach((entry) => { %>
+                    <div class="admin-entry">
+                      <div class="admin-meta">
+                        <span class="admin-pill"><%= entry.category %></span>
+                        <span class="admin-pill"><%= formatDateTime(entry.updatedAt) %></span>
+                      </div>
+                      <h5><%= entry.title %></h5>
+                      <ul class="mt-3">
+                        <% (entry.details || []).forEach((detail) => { %>
+                          <li><%= detail %></li>
+                        <% }) %>
+                      </ul>
+
+                      <form method="POST" action="/admin/changelog/edit/<%= entry._id %>" class="mt-3">
+                        <label>title</label>
+                        <input type="text" class="form-control" name="title" value="<%= entry.title %>" required>
+                        <label>category</label>
+                        <select class="form-control" name="category">
+                          <option value="update" <%= entry.category === 'update' ? 'selected' : '' %>>update</option>
+                          <option value="feature" <%= entry.category === 'feature' ? 'selected' : '' %>>feature</option>
+                          <option value="fix" <%= entry.category === 'fix' ? 'selected' : '' %>>fix</option>
+                          <option value="maintenance" <%= entry.category === 'maintenance' ? 'selected' : '' %>>maintenance</option>
+                        </select>
+                        <label>details</label>
+                        <textarea class="form-control" name="details" rows="4" required><%= (entry.details || []).join('\n') %></textarea>
+                        <button type="submit" class="btn btn-info btn-round">update</button>
+                      </form>
+
+                      <form method="POST" action="/admin/changelog/delete/<%= entry._id %>" class="mt-2">
+                        <button type="submit" class="btn btn-danger btn-round">delete</button>
+                      </form>
+                    </div>
+                  <% }) %>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/core/jquery.min.js"></script>
+  <script src="/js/core/popper.min.js"></script>
+  <script src="/js/core/bootstrap.min.js"></script>
+  <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/js/plugins/bootstrap-notify.js"></script>
+  <script src="/js/black-dashboard.min.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>
+

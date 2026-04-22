@@ -3,9 +3,37 @@ const { User } = require('./model');
 const nodemailer = require('nodemailer')
 const halaman = require('../lib/email')
 
-    async function addUser(username, email, password, apikey, id, nomorWa) {
-        let obj = { username, email, password, apikey, defaultKey: apikey, jid: id, nomorWa, status: null, premium: null, admin: null, limit: limitCount, totalreq: 0 };
-        User.create(obj);
+const smtpUser = process.env.SMTP_USER || 'zanssxploit@gmail.com';
+const smtpPass = process.env.SMTP_PASS || 'hvtj nfkr vfwg yfnt';
+
+function createMailer() {
+    return nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user: smtpUser,
+            pass: smtpPass
+        }
+    });
+}
+
+    async function addUser(username, email, password, apikey, id, nomorWa, options = {}) {
+        let obj = {
+            username,
+            email,
+            password,
+            apikey,
+            defaultKey: apikey,
+            jid: id,
+            nomorWa,
+            status: null,
+            premium: null,
+            admin: false,
+            limit: options.limit ?? limitCount,
+            totalreq: 0
+        };
+        return await User.create(obj);
     }
     module.exports.addUser = addUser
 
@@ -49,6 +77,12 @@ const halaman = require('../lib/email')
     }
     module.exports.checkNomor = checkAdmin;
 
+    async function checkApiKey(apikey) {
+        let user = await User.findOne({ apikey: apikey });
+        return Boolean(user);
+    }
+    module.exports.checkApiKey = checkApiKey;
+
     async function getApikey(id) {
         let users = await User.findOne({_id: id});
         return { apikey: users.apikey, username: users.username };
@@ -69,9 +103,7 @@ const halaman = require('../lib/email')
         let key = await User.findOne({apikey: apikey});
         let min = key.limit - 1;
         let plus = key.totalreq + 1;
-        User.updateOne({apikey: apikey}, {limit: min, totalreq: plus}, function (err, res) {
-            if (err) throw err;
-        })
+        await User.updateOne({apikey: apikey}, {limit: min, totalreq: plus});
     }
     module.exports.limitAdd = limitAdd
 
@@ -93,56 +125,61 @@ const halaman = require('../lib/email')
 
     async function resetAllLimit() {
         let users = await User.find({});
-        users.forEach(async(data) => {
+        for (const data of users) {
             let { premium, username } = data
             if (premium !== null) {
-                return User.updateOne({username: username}, {limit: limitPremium}, function (err, res) {
-                    if (err) throw err;
-                })   
+                await User.updateOne({username: username}, {limit: limitPremium});
             } else {
-                return User.updateOne({username: username}, {limit: limitCount}, function (err, res) {
-                    if (err) throw err;
-                })
+                await User.updateOne({username: username}, {limit: limitCount});
             }
-        })
+        }
     }
     
     module.exports.resetAllLimit = resetAllLimit
     
     //send email
     
-    async function sendEmail(email, idnya, hostname) {
-    const verifykan = "https://"+hostname+"/verification/verify?id="+idnya
-    const mailer = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-        user: "wanzbrayy010308@gmail.com",
-        pass: "Plerr321"
+    function buildBaseUrl(protocol, host) {
+        if (process.env.APP_BASE_URL) return process.env.APP_BASE_URL.replace(/\/$/, '');
+        if (!host) return 'http://localhost:5000';
+        const safeProtocol = protocol || (host.includes('localhost') || host.startsWith('127.0.0.1') ? 'http' : 'https');
+        return `${safeProtocol}://${host}`;
     }
-    })
-    mailer.sendMail({
-        from: `"WANZOFC Rest Api's"`,
-        to: email,
-        subject: "Please Verify",
-        html: halaman.email(verifykan)
-    }, (err) => {
-        if (err) {
-            console.log(err)
-        } else {
-            console.log("Succes Send Email ke " + email)
-        }
-    })
+
+    async function sendEmail(email, idnya, protocol, host) {
+    const verifykan = buildBaseUrl(protocol, host) + "/verification/verify?id=" + idnya
+    const mailer = createMailer()
+    try {
+        await mailer.sendMail({
+            from: `"WANZOFC Rest Api's" <${smtpUser}>`,
+            to: email,
+            subject: "Please Verify",
+            html: halaman.email(verifykan)
+        })
+        console.log("Succes Send Email ke " + email)
+        return { success: true }
+    } catch (err) {
+        console.log(err)
+        return { success: false, message: err.message }
+    }
     }
     module.exports.sendEmail = sendEmail;
+
+    async function findUserByUsernameOrEmail(identity) {
+        let users = await User.findOne({
+            $or: [
+                { username: identity },
+                { email: identity }
+            ]
+        });
+        return users;
+    }
+    module.exports.findUserByUsernameOrEmail = findUserByUsernameOrEmail;
     
     async function verifyUser(id) {
         let users = await User.findOne({jid: id});
-        if (users.jid !== null) {
-            return User.updateOne({jid: id}, {status: "Terverifikasi"}, function (err, res) {
-            if (err) throw err;
-        });
+        if (users && users.jid !== null) {
+            return await User.updateOne({jid: id}, {status: "Terverifikasi"});
         } else {
             return false
         };

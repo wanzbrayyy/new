@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="description" content="A REST APIs website that provides a wide variety of features for developers.">
-<meta name="author" content="WANZOFC">
-<meta property="og:image" content="/images/Ashborns.jpg">
-<title>WANZOFC | REGISTER</title>
+<meta name="author" content="New Coding">
+<meta property="og:image" content="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg">
+<title>New Coding | Register</title>
 
-<link rel="icon" type="image/png" sizes="16x16" href="/images/Ashborns.jpg">
+<link rel="icon" type="image/png" sizes="16x16" href="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg">
 <link href="/css/styless.css" rel="stylesheet">
 <body class="h-100">
 <div class="authincation h-100">
@@ -20,9 +20,23 @@
 <div class="row no-gutters">
 <div class="col-xl-12">
 <div class="auth-form">
-<h4 class="text-center mb-4">Register</h4>
+<div class="text-center mb-4">
+<img src="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg" alt="New Coding" style="width:72px;height:72px;border-radius:18px;object-fit:cover;margin-bottom:12px;">
+<h4 class="text-center mb-2">Register</h4>
+<p style="opacity:.75;margin-bottom:0;">new coding</p>
+</div>
 <form method="POST" action="/users/register">
 <input type="hidden" name="_csrf" value="mRXjuHlo-d9lcGLdOFlqbu4VoMH8jjXSxW5A">
+<input type="hidden" name="inviteCode" value="<%= invite ? invite.code : '' %>">
+<% if (invite) { %>
+<div class="form-group">
+<div style="padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.04);">
+<strong style="display:block;margin-bottom:6px;">link aktif: <%= invite.title %></strong>
+<small style="display:block;">limit: <%= invite.limit %> | pemakai: <%= invite.usedCount %>/<%= invite.maxUses %></small>
+<small style="display:block;">custom apikey: <%= invite.allowCustomKey ? 'boleh' : 'tidak' %></small>
+</div>
+</div>
+<% } %>
 <div class="form-group">
 <label class="mb-1"><strong>Username</strong></label>
 <input type="text" class="form-control" name="username" placeholder="Username" required>
@@ -43,6 +57,12 @@
 <label class="mb-1"><strong>Repeat Password</strong></label>
 <input type="password" class="form-control" name="confirmPassword" placeholder="Repeat Password" required>
 </div>
+<% if (invite && invite.allowCustomKey) { %>
+<div class="form-group">
+<label class="mb-1"><strong>Custom API Key</strong></label>
+<input type="text" class="form-control" name="customKey" placeholder="isi jika mau pakai apikey sendiri">
+</div>
+<% } %>
 <div class="text-center mt-4">
 <button type="submit" class="btn btn-primary btn-block">Register</button>
 </div>

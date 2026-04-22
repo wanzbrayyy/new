@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const session = require('express-session');
+const { MongoStore } = require('connect-mongo');
 const cookieParser = require('cookie-parser');
 const expressLayout = require('express-ejs-layouts');
 const rateLimit = require("express-rate-limit");
@@ -10,21 +12,22 @@ const MemoryStore = require('memorystore')(session);
 const compression = require('compression');
 const ms = require('ms');
 
-const apiRouters = require('api');
-const userRouters = require('users');
-const verifyRouters = require('verify');
-const premiumRouters = require('premium');
+const apiRouters = require('./server/api');
+const userRouters = require('./server/users');
+const verifyRouters = require('./server/verify');
+const premiumRouters = require('./server/premium');
+const adminRouters = require('./server/admin');
 
-const { User } = require('model')
-const { checkUsername, checkAdmin } = require('db');
-const { isAuthenticated } = require('auth');
-const { connectMongoDb } = require('connect');
-const { getTotalUser, cekExpiredDays } = require('premium');
-const { port } = require('settings');
+const { User, Changelog } = require('./database/model');
+const { checkUsername } = require('./database/db');
+const { isAuthenticated } = require('./lib/auth');
+const { connectMongoDb } = require('./database/connect');
+const { getTotalUser, cekExpiredDays } = require('./database/premium');
+const { port } = require('./lib/settings');
+const { dbURI } = require('./lib/settings');
 
 const PORT = process.env.PORT || port;
-
-connectMongoDb();
+const SESSION_SECRET = process.env.SESSION_SECRET || 'secret';
 
 app.set('trust proxy', 1);
 app.use(compression())
@@ -37,15 +40,23 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 app.use(expressLayout);
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: 'secret',  
-  resave: true,
-  saveUninitialized: true,
-  cookie: { maxAge: 86400000 },
-  store: new MemoryStore({
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 86400000,
+    sameSite: 'lax',
+    secure: process.env.NODE_ENV === 'production'
+  },
+  store: dbURI ? MongoStore.create({
+    mongoUrl: dbURI,
+    ttl: 86400
+  }) : new MemoryStore({
     checkPeriod: 86400000
   }),
 }));
@@ -55,15 +66,31 @@ app.use(cookieParser());
 
 app.use(passport.initialize());
 app.use(passport.session());
-require('config')(passport);
+require('./lib/config')(passport);
 
 app.use(flash());
 
 app.use(function(req, res, next) {
+  const user = req.user || null;
+  const isAdmin = Boolean(user && (
+    user.admin === true ||
+    user.username === 'wanz.' ||
+    user.username === 'maverick_dark'
+  ));
+
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
-  res.locals.user = req.user || null;
+  res.locals.user = user;
+  res.locals.isAdmin = isAdmin;
+  res.locals.currentPath = req.path;
+  res.locals.formatDateTime = (value) => {
+    if (!value) return '-';
+    return new Intl.DateTimeFormat('id-ID', {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    }).format(new Date(value));
+  };
   next();
 })
 
@@ -112,11 +139,11 @@ app.post('/profile', async (req, res, next) => {
     let checkUser = await checkUsername(username);
     if (checkUser) {
          req.flash('error_msg', 'Username already exists.');
-         res.redirect('/profile');
+         return res.redirect('/profile');
     } else {
-    if (username !== null) User.updateOne({email: email}, {username: username}, function (err, res) { if (err) throw err;})
+    if (username !== null) await User.updateOne({email: email}, {username: username})
          req.flash('success_msg', 'Succesfully changed username');
-         res.redirect('/profile')
+         return res.redirect('/profile')
     }
 })
 
@@ -211,10 +238,12 @@ app.get('/other', isAuthenticated, async (req, res) => {
 });
 
 app.get('/changelog', isAuthenticated, async (req, res) => { 
+  const entries = await Changelog.find({}).sort({ updatedAt: -1, createdAt: -1 });
   let { username, email } = req.user
   res.render('changelog', {
     username: username,
     email,
+    entries,
     layout: 'changelog'
   });
 });
@@ -228,33 +257,16 @@ app.get('/pricing', isAuthenticated, async (req, res) => {
    })
 })
 
-app.get('listuser', isAuthenticated, async (req, res) => {
-  let { username, email } = req.user
-  let List = await User.find({})
-  if (username !=='wanz.') return res.redirect('/docs');
-  res.render('listuser', {
-       List,
-       username,
-       email,
-       layout: 'listuser'
-  })
-})
+app.get('/listuser', isAuthenticated, async (req, res) => res.redirect('/admin/listuser'))
 
-app.get('index', isAuthenticated, async(req, res) => {
-  let { username, email } = req.user
-  if (username !=='wanz.') return res.redirect('/docs');
-  res.render('index', {
-       username,
-       email,
-       layout: 'index'
-  })
-})
+app.get('/index', isAuthenticated, async(req, res) => res.redirect('/admin/index'))
 
 
 app.use('/api', apiRouters);
 app.use('/users', userRouters);
 app.use('/verification', verifyRouters);
 app.use('/premium', premiumRouters);
+app.use('/admin', adminRouters);
 
 app.use(function (req, res, next) {
   if (res.statusCode == '200') {
@@ -266,6 +278,18 @@ app.use(function (req, res, next) {
 
 app.set('json spaces', 4);
 
-app.listen(PORT, () => {
-  console.log(`App listening at http://localhost:${PORT}`);
-});
+async function startServer() {
+  await connectMongoDb();
+  app.listen(PORT, () => {
+    console.log(`App listening at http://localhost:${PORT}`);
+  });
+}
+
+if (require.main === module) {
+  startServer().catch((error) => {
+    console.error('[ERROR] Failed to connect to MongoDB:', error.message);
+    process.exit(1);
+  });
+}
+
+module.exports = app;

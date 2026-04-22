@@ -1,316 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="A REST APIs website that provides a wide variety of features for developers.">
-  <meta name="robots" content="archive, follow, imageindex, index, odp, snippet, translate">
-  <meta name="author" content="WANZOFC">
-  <title> WANZOFC - REST API </title>
-  <meta property="og:site_name" name="og:site_name" content="WANZOFC APIs">
-  <meta property="og:title" name="og:title" content="WANZOFC - REST APIs">
-  <meta property="og:url" name="og:url" content="http://wa.me/62895402567224">
-  <meta property="og:image" name="og:image" content="https://img101.pixhost.to/images/341/551053112_wanzofc.jpg">
-  <meta property="og:description" name="og:description" content="A REST APIs website that provides a wide variety of features for developers.">
-  <link rel="apple-touch-icon" href="/images/Ashborns.jpg" />
-  <link rel="shortcut icon" type="image/x-icon" href="/images/Ashborns.jpg" />
-  <link rel="icon" href="/images/Ashborns.jpg" />
-  <meta name="msapplication-TileColor" content="#ffffff" />
-  <meta name="msapplication-TileImage" content="/images/Ashborns.jpg" />
-  <meta name="theme-color" content="#ffffff" />
-  <link rel="canonical" href="/" />
+  <title>pricing</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
   <link rel="stylesheet" href="/css/nucleo-icons.css" />
   <link rel="stylesheet" href="/css/alli.min.css" />
   <link rel="stylesheet" href="/css/icone.css" />
   <link rel="stylesheet" href="/css/black-dashboard.min.css" />
   <link rel="stylesheet" href="/css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous"/>
+  <style>
+    .pricing-hero-card,
+    .pricing-plan-card,
+    .pricing-note-card {
+      background: rgba(17, 23, 35, 0.72);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 20px;
+    }
+    .pricing-hero-card h2,
+    .pricing-plan-card h3,
+    .pricing-note-card h4 {
+      text-transform: lowercase;
+    }
+    .pricing-hero-card p,
+    .pricing-plan-card p,
+    .pricing-note-card p,
+    .pricing-plan-card li {
+      text-transform: lowercase;
+      color: rgba(255,255,255,.75);
+    }
+    .pricing-price {
+      font-size: 42px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .pricing-badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(0,242,195,.12);
+      color: #00f2c3;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: lowercase;
+    }
+    .pricing-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .pricing-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+  </style>
 </head>
-
-   <body class="sidebar-mini white-content">
-    <div class="wrapper">
-      <div class="sidebar" data="red">
-  <div class="sidebar-wrapper">
-    <div class="logo text-center">
-      <a href="/" class="simple-text logo-normal" style="font-size: large;">
-           WANZOFC APIs
+<body class="sidebar-mini white-content">
+  <div class="wrapper">
+    <div class="sidebar" data="red">
+      <div class="sidebar-wrapper">
+        <div class="logo text-center">
+      <a href="/" class="simple-text logo-normal" style="font-size: large; display:inline-flex; align-items:center; gap:10px;">
+           <img src="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg" alt="New Coding" style="width:34px;height:34px;border-radius:12px;object-fit:cover;">
+           <span>New Coding</span>
         </a>
      </div>
-    <ul class="nav">
-      <li>
-        <a href="/docs">
-          <i class="fal fa-alien-monster"></i>
-          <p>Dashboard</p>
-        </a>
-      </li>
-      <li class="active" >
-      <a href="/pricing">
-       <i class="fi-rr-money"></i>
-        <p>Pricing</p>
-       </a>
-      </li>
-      <li>
-      <a href="/changelog">
-       <i class="fi-rr-refresh"></i>
-        <p>Changelog</p>
-       </a>
-      </li>
-     <hr>
-      <li>
-        <a href="/downloader">
-          <i class="fa fa-fw fa-download"></i>
-          <p>Downloader</p>
-        </a>
-      </li>
-      <li>
-        <a href="/searching">
-          <i class="fa fa-fw fa-search"></i>
-          <p>Searching</p>
-        </a>
-      </li>
-      <li>
-        <a href="/randomimage">
-          <i class="far fa-images"></i>
-          <p>Random Images</p>
-        </a>
-      </li>
-      <li>
-        <a href="/animanga">
-          <i class="fi-rr-crown"></i>
-          <p>AniManga</p>
-        </a>
-      </li>
-      <li>
-        <a href="/stalking">
-          <i class="fa fa-fw fa-female"></i>
-          <p>Stalking</p>
-        </a>
-      </li>
-      <li>
-          <a href="/creator">
-            <i class="fi-rr-magic-wand"></i>
-            <p>Creator</p>
-          </a>
-        </li>
-      <li>
-        <a href="/entertainment">
-          <i class="fa fa-fw fa-smile"></i>
-          <p>Entertainment</p>
-        </a>
-      </li>
-      <li>
-      <a href="/primbon">
-          <i class="fa fa-fw fa-user-md"></i>
-          <p>Primbon</p>
-        </a>
-      </li>
-      <li>
-      <a href="/other">
-          <i class="fa fa-fw fa-random"></i>
-          <p>Other</p>
-        </a>
-      </li>
-      <li>
-      <a href="/admin/listuser">
-          <i class="far fa-male"></i>
-          <p>List User</p>
-        </a>
-      </li>
-      <li style="margin-bottom: 8rem !important;" >
-      <a href="/admin/index">
-          <i class="far fa-feather"></i>
-          <p>Admin</p>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-  <div class="main-panel">
-       <div class="navbar-minimize-fixed" style="opacity: 0;">
-       <button class="minimize-sidebar btn btn-link btn-just-icon">
-        <i class="tim-icons icon-align-center visible-on-sidebar-regular text-dark"></i>
-        <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-dark"></i>
-     </button>
- </div>
-<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" style="top: 0px;">
-    <div class="container-fluid">
-      <div class="navbar-wrapper">
-        <div class="navbar-minimize d-inline">
-          <button class="minimize-sidebar btn btn-link btn-just-icon" rel="tooltip" data-original-title="Sidebar toggle" data-placement="right" aria-describedby="tooltip723041">
-            <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
-            <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
-          </button>
-        </div>
-        <div class="navbar-toggle d-inline">
-          <button type="button" class="navbar-toggler">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-          </button>
-        </div>
-        <a class="navbar-brand" href="#">Pricing</a>
-      </div>
-      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-        <span class="navbar-toggler-bar navbar-kebab"></span>
-      </button>
-      
-      <div class="navbar-collapse collapse" id="navigation" style>
-        <ul class="navbar-nav ml-auto text-dark">
-        	<li class="nav-item dropdown no-arrow text-dark">
-                <a class="nav-link dropdown-toggle text-dark" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="tim-icons icon-zoom-split text-dark"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-search p-3 shadow animated--grow-in white-color" aria-labelledby="searchDropdown" style="border: none;">
-                    <form class="navbar-search" action="#" method="GET">
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <button class="input-group-text" type="submit">
-                                    <i class="tim-icons icon-zoom-split text-dark"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control text-dark" name="q" placeholder="Search" autocomplete="off" required>
-                        </div>
-                    </form>
-                </div>
-            </li>
-            <li class="dropdown nav-item">            	
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                    <div class="photo">
-                        <img src="/images/loli.png" alt="Profile Photo">
-                    </div>
-                    <b class="caret d-none d-lg-block d-xl-block"></b>
-                    <p class="d-lg-none text-dark"><%= username %></p>
-                </a>
-                <ul class="dropdown-menu dropdown-navbar dropdown-user">
-                    <div class="dropdown-user-scroll scrollbar-outer ">
-                        <li>
-                            <div class="user-box">
-                                <div class="avatar-lg"><img src="/images/loli.png" alt="image profile" class="avatar-img rounded"></div>
-                                <div class="u-text text-dark">
-                                    <h4><%= username %></h4>
-                                    <p></p>
-                                    <p class="text-dark"><%= email %></p>
-                                </div>
-                            </div>
-                          <li>
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item text-dark" href="/profile"><i class="far fa-address-card text-success"></i>&nbsp;My Profile</a>                              
-                              <div class="dropdown-divider"></div>
-                              <a class="dropdown-item text-dark" href="/users/logout"><i class="far fa-sign-out text-danger"></i>&nbsp;Logout</a> 
-                          </li>
-                    </div>
-                </ul>                           
-            </li>
-          <li class="separator d-lg-none"></li>
+        <ul class="nav">
+          <li><a href="/docs"><i class="fal fa-alien-monster"></i><p>Dashboard</p></a></li>
+          <li class="active"><a href="/pricing"><i class="fi-rr-money"></i><p>Pricing</p></a></li>
+          <li><a href="/changelog"><i class="fi-rr-refresh"></i><p>Changelog</p></a></li>
+          <hr>
+          <li><a href="/downloader"><i class="fa fa-fw fa-download"></i><p>Downloader</p></a></li>
+          <li><a href="/searching"><i class="fa fa-fw fa-search"></i><p>Searching</p></a></li>
+          <li><a href="/randomimage"><i class="far fa-images"></i><p>Random Images</p></a></li>
+          <li><a href="/animanga"><i class="fi-rr-crown"></i><p>AniManga</p></a></li>
+          <li><a href="/stalking"><i class="fa fa-fw fa-female"></i><p>Stalking</p></a></li>
+          <li><a href="/creator"><i class="fi-rr-magic-wand"></i><p>Creator</p></a></li>
+          <li><a href="/entertainment"><i class="fa fa-fw fa-smile"></i><p>Entertainment</p></a></li>
+          <li><a href="/primbon"><i class="fa fa-fw fa-user-md"></i><p>Primbon</p></a></li>
+          <li><a href="/other"><i class="fa fa-fw fa-random"></i><p>Other</p></a></li>
+          <% if (isAdmin) { %>
+          <li><a href="/admin/listuser"><i class="far fa-male"></i><p>List User</p></a></li>
+          <li style="margin-bottom: 8rem !important;"><a href="/admin/index"><i class="far fa-feather"></i><p>Admin</p></a></li>
+          <% } %>
         </ul>
       </div>
     </div>
-  </nav>
-  <div class="content">
-                
-<div class="row justify-content-center align-items-center">
-    <div class="col-md-3 pl-md-0 pr-md-0">
-        <div class="card card-pricing card-pricing-focus card-secondary card-round" style="background-color: transparent;">
-            <div class="card-header">
-                <h4 class="card-title">Free</h4>
-                <div class="card-price">
-                    <span class="price">Rp. 0</span>
-                </div>
+
+    <div class="main-panel">
+      <div class="navbar-minimize-fixed" style="opacity: 0;">
+        <button class="minimize-sidebar btn btn-link btn-just-icon">
+          <i class="tim-icons icon-align-center visible-on-sidebar-regular text-dark"></i>
+          <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-dark"></i>
+        </button>
+      </div>
+      <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" style="top: 0px;">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <div class="navbar-minimize d-inline">
+              <button class="minimize-sidebar btn btn-link btn-just-icon">
+                <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
+                <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
+              </button>
             </div>
-            <div class="card-body">
-                <ul class="specification-list">
+            <div class="navbar-toggle d-inline">
+              <button type="button" class="navbar-toggler">
+                <span class="navbar-toggler-bar bar1"></span>
+                <span class="navbar-toggler-bar bar2"></span>
+                <span class="navbar-toggler-bar bar3"></span>
+              </button>
+            </div>
+            <a class="navbar-brand" href="#">Pricing</a>
+          </div>
+          <div class="navbar-collapse collapse" id="navigation">
+            <ul class="navbar-nav ml-auto text-dark">
+              <li class="dropdown nav-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <div class="photo"><img src="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg" alt="Profile Photo"></div>
+                  <b class="caret d-none d-lg-block d-xl-block"></b>
+                  <p class="d-lg-none text-dark"><%= username %></p>
+                </a>
+                <ul class="dropdown-menu dropdown-navbar dropdown-user">
+                  <div class="dropdown-user-scroll scrollbar-outer ">
                     <li>
-                        <span class="name-specification">Requests</span>
-                        <span class="status-specification">50 / day</span>
-                    </li>
+                      <div class="user-box">
+                        <div class="avatar-lg"><img src="https://pixhost.to/show/7353/717289326_img-20260422-wa0016.jpg" alt="image profile" class="avatar-img rounded"></div>
+                        <div class="u-text text-dark">
+                          <h4><%= username %></h4>
+                          <p class="text-dark"><%= email %></p>
+                        </div>
+                      </div>
                     <li>
-                        <span class="name-specification">Custom Api Key</span>
-                        <span class="status-specification">No</span>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="/profile"><i class="far fa-address-card text-success"></i>&nbsp;My Profile</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item text-dark" href="/users/logout"><i class="far fa-sign-out text-danger"></i>&nbsp;Logout</a>
                     </li>
-                    <li>
-                        <span class="name-specification">Premium Features</span>
-                        <span class="status-specification">No</span>
-                    </li>
-                    <li>
-                        <span class="name-specification">Expired</span>
-                        <span class="status-specification">-</span>
-                    </li>
+                  </div>
                 </ul>
-            </div>
-            <div class="card-footer">
-                <a class="btn btn-primary btn-round text-white" href="/profile">Profile</a
-                >
-            </div>
+              </li>
+            </ul>
+          </div>
         </div>
-    </div>
-    <div class="col-md-3 pl-md-0 pr-md-0">
-        <div
-            class="
-                card card-pricing card-pricing-focus card-secondary card-round
-            "
-        style="background-color: transparent;">
-            <div class="card-header">
-                <h4 class="card-title">Premium</h4>
-                <div class="card-price">
-                    <span class="price">Rp. 10K</span>
-                </div>
-            </div>
-            <div class="card-body">
-                <ul class="specification-list">
-                    <li>
-                        <span class="name-specification">Requests</span>
-                        <span class="status-specification">99999999999 / day</span>
-                    </li>
-                    <li>
-                        <span class="name-specification">Custom Api Key</span>
-                        <span class="status-specification">Yes</span>
-                    </li>
-                    <li>
-                        <span class="name-specification">Premium Features</span>
-                        <span class="status-specification">Yes</span>
-                    </li>
-                    <li>
-                        <span class="name-specification">Expired</span>
-                        <span class="status-specification">1 Month</span>
-                    </li>
+      </nav>
+
+      <div class="content">
+        <div class="card pricing-hero-card">
+          <div class="card-body">
+            <span class="pricing-badge">pricing</span>
+            <h2 class="mt-3">paket simpel, tinggal pilih sesuai kebutuhan.</h2>
+            <p class="mb-0">kalau masih coba-coba pakai free dulu. kalau project sudah rutin jalan dan butuh limit lebih lega, tinggal naik ke premium.</p>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-6">
+            <div class="card pricing-plan-card">
+              <div class="card-body">
+                <span class="pricing-badge">free</span>
+                <h3 class="mt-3">buat mulai dan tes endpoint</h3>
+                <div class="pricing-price mt-2">rp 0</div>
+                <ul class="pricing-list mt-4">
+                  <li>cocok buat eksplorasi awal</li>
+                  <li>limit standar harian</li>
+                  <li>pakai api key bawaan sistem</li>
+                  <li>pas buat belajar alur dashboard dan docs</li>
                 </ul>
+                <a class="btn btn-primary btn-round mt-4" href="/profile">lihat profile</a>
+              </div>
             </div>
-            <div class="card-footer">
-                <a class="btn btn btn-success btn-round text-white" href="https://wa.me/6288286421519">Order Now</a
-                >
+          </div>
+
+          <div class="col-md-6">
+            <div class="card pricing-plan-card">
+              <div class="card-body">
+                <span class="pricing-badge">premium</span>
+                <h3 class="mt-3">buat workflow yang sudah rutin</h3>
+                <div class="pricing-price mt-2">rp 10k</div>
+                <ul class="pricing-list mt-4">
+                  <li>limit jauh lebih besar</li>
+                  <li>bisa custom api key</li>
+                  <li>lebih enak buat bot dan project aktif</li>
+                  <li>masa aktif satu bulan</li>
+                </ul>
+                <a class="btn btn-success btn-round mt-4" href="https://wa.me/6288801074059" target="_blank">order now</a>
+              </div>
             </div>
+          </div>
         </div>
+
+        <div class="row mt-2">
+          <div class="col-md-4">
+            <div class="card pricing-note-card">
+              <div class="card-body">
+                <h4>free</h4>
+                <p>cocok kalau masih tes-tes endpoint dan belum butuh limit besar.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card pricing-note-card">
+              <div class="card-body">
+                <h4>premium</h4>
+                <p>cocok kalau project sudah jalan rutin dan butuh akses yang lebih longgar.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card pricing-note-card">
+              <div class="card-body">
+                <h4>lanjut</h4>
+                <p>kalau mau lihat update terbaru, tinggal buka halaman changelog.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
-  <footer class="footer fixed-bottom">
-    <div class="copyright text-center my-auto">
-     <span>
-       copyright with <i class="fal fa-heart text-danger"></i> by WANZOFC -
-  </span>
-  <span>
-    <a id="jam"></a>
-  </span>
-</div>
-</footer>
-    <script
-      data-cfasync="false"
-      src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
-    ></script>
-    <script src="/js/core/jquery.min.js"></script>
-    <script src="/js/core/popper.min.js"></script>
-    <script src="/js/core/bootstrap.min.js"></script>
-    <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <script src="/js/plugins/bootstrap-notify.js"></script>
-    <script src="/js/black-dashboard.min.js"></script>
-    <script src="/js/script.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"
-      integrity="sha512-OmBbzhZ6lgh87tQFDVBHtwfi6MS9raGmNvUNTjDIBb/cgv707v9OuBVpsN6tVVTLOehRFns+o14Nd0/If0lE/A=="
-      crossorigin="anonymous"
-    ></script>
-  </body>
+  </div>
+
+  <script src="/js/core/jquery.min.js"></script>
+  <script src="/js/core/popper.min.js"></script>
+  <script src="/js/core/bootstrap.min.js"></script>
+  <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/js/plugins/bootstrap-notify.js"></script>
+  <script src="/js/black-dashboard.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
 </html>
+

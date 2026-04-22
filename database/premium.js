@@ -3,24 +3,20 @@ const toMs = require('ms');
 const { limitCount, limitPremium, tokens } = require('../lib/settings');
 
     async function addPremium(username, customKey, expired) {
-        User.updateOne({username: username}, {apikey: customKey, premium: Date.now() + toMs(expired), limit: limitPremium}, function (err, res) {
-            if (err) throw err;
-        })
+        await User.updateOne({username: username}, {apikey: customKey, premium: Date.now() + toMs(expired), limit: limitPremium})
     }
     module.exports.addPremium = addPremium
 
     async function ExpiredTime() {
         let users = await User.find({});
-        users.forEach(async(data) => {
+        for (const data of users) {
             let { premium, defaultKey, username } = data
-            if (!premium || premium === null) return
+            if (!premium || premium === null) continue
             if (Date.now() >= premium) {
-                User.updateOne({username: username}, {apikey: defaultKey, premium: null, limit: limitCount}, function (err, res) {
-                    if (err) throw err;
-                    console.log(`Masa Premium ${username} sudah habis`)
-                })
+                await User.updateOne({username: username}, {apikey: defaultKey, premium: null, limit: limitCount})
+                console.log(`Masa Premium ${username} sudah habis`)
             }
-        })
+        }
     }
     module.exports.ExpiredTime = ExpiredTime
     
@@ -37,9 +33,7 @@ const { limitCount, limitPremium, tokens } = require('../lib/settings');
     async function deletePremium(username) {
         let users = await User.findOne({username: username});
         let key = users.defaultKey
-        User.updateOne({username: username}, {apikey: key, premium: null, limit: limitCount}, function (err, res) {
-            if (err) throw err;
-        })
+        await User.updateOne({username: username}, {apikey: key, premium: null, limit: limitCount})
     }
     module.exports.deletePremium = deletePremium
 
@@ -54,18 +48,14 @@ const { limitCount, limitPremium, tokens } = require('../lib/settings');
     module.exports.checkPremium = checkPremium;
 
     async function changeKey(username, key) {
-        User.updateOne({username: username}, {apikey: key}, function (err, res) {
-            if (err) throw err;
-        });
+        await User.updateOne({username: username}, {apikey: key});
     }
     module.exports.changeKey = changeKey
 
     async function resetOneLimit(username) {
         let users = await User.findOne({username: username});
         if (users !== null) {
-            User.updateOne({username: username}, {limit: limitCount}, function (err, res) {
-                if (err) throw err;
-            });
+            await User.updateOne({username: username}, {limit: limitCount});
         }
     }
     module.exports.resetOneLimit = resetOneLimit
@@ -138,24 +128,18 @@ const { limitCount, limitPremium, tokens } = require('../lib/settings');
         let db = await Utils.find({})
         let addOneToday = db[0].today += 1
         let addOneTotal = db[0].total += 1
-        Utils.updateOne({util: 'util'}, {total: addOneTotal, today: addOneToday}, (err, res) => {
-            if (err) throw err
-        })
+        await Utils.updateOne({util: 'util'}, {total: addOneTotal, today: addOneToday})
     }
     module.exports.addRequest = addRequest
 
     async function addVisitor() {
         let db = await Utils.find({})
         let addOne = db[0].visitor += 1
-        Utils.updateOne({util: 'util'}, {visitor: addOne}, (err, res) => {
-            if (err) throw err
-        })
+        await Utils.updateOne({util: 'util'}, {visitor: addOne})
     }
     module.exports.addVisitor = addVisitor
 
     async function resetTodayReq() {
-        Utils.updateOne({util: 'util'}, {today: 0}, (err, res) => {
-            if (err) throw err
-        })
+        await Utils.updateOne({util: 'util'}, {today: 0})
     }
     module.exports.resetTodayReq = resetTodayReq
