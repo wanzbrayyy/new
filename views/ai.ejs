@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="A REST APIs website that provides a wide variety of features for developers.">
+  <meta name="robots" content="archive, follow, imageindex, index, odp, snippet, translate">
+  <meta name="author" content="New Coding">
+  <title> New Coding </title>
+  <meta property="og:site_name" name="og:site_name" content="New Coding">
+  <meta property="og:title" name="og:title" content="New Codings">
+  <meta property="og:url" name="og:url" content="http://wa.me/6288801074059">
+  <meta property="og:image" name="og:image" content="/images/new-coding-logo.jpg">
+  <meta property="og:description" name="og:description" content="A REST APIs website that provides a wide variety of features for developers.">
+  <link rel="apple-touch-icon" href="/images/new-coding-logo.jpg" />
+  <link rel="shortcut icon" type="image/x-icon" href="/images/new-coding-logo.jpg" />
+  <link rel="icon" href="/images/new-coding-logo.jpg" />
+  <meta name="msapplication-TileColor" content="#ffffff" />
+  <meta name="msapplication-TileImage" content="/images/new-coding-logo.jpg" />
+  <meta name="theme-color" content="#ffffff" />
+  <link rel="canonical" href="/" />
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet"/>
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/nucleo-icons.css" />
+  <link rel="stylesheet" href="/css/alli.min.css" />
+  <link rel="stylesheet" href="/css/icone.css" />
+  <link rel="stylesheet" href="/css/black-dashboard.min.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.css" integrity="sha512-DIW4FkYTOxjCqRt7oS9BFO+nVOwDL4bzukDyDtMO7crjUZhwpyrWBFroq+IqRe6VnJkTpRAS6nhDvf0w+wHmxg==" crossorigin="anonymous"/>
+</head>
+
+   <body class="sidebar-mini white-content">
+    <div class="wrapper">
+      <div class="sidebar" data="red">
+  <div class="sidebar-wrapper">
+    <div class="logo text-center">
+      <a href="/" class="simple-text logo-normal" style="font-size: large; display:inline-flex; align-items:center; gap:10px;">
+           <img src="/images/new-coding-logo.jpg" alt="New Coding" style="width:34px;height:34px;border-radius:12px;object-fit:cover;">
+           <span>New Coding</span>
+        </a>
+     </div>
+    <ul class="nav">
+      <li>
+        <a href="/docs">
+          <i class="fal fa-alien-monster"></i>
+          <p>Dashboard</p>
+        </a>
+      </li>
+      <li>
+      <a href="/pricing">
+       <i class="fi-rr-money"></i>
+        <p>Pricing</p>
+       </a>
+      </li>
+      <li>
+      <a href="/changelog">
+       <i class="fi-rr-refresh"></i>
+        <p>Changelog</p>
+       </a>
+      </li>
+     <hr>
+      <li>
+        <a href="/downloader">
+          <i class="fa fa-fw fa-download"></i>
+          <p>Downloader</p>
+        </a>
+      </li>
+      <li>
+        <a href="/searching">
+          <i class="fa fa-fw fa-search"></i>
+          <p>Searching</p>
+        </a>
+      </li>
+      <li>
+        <a href="/randomimage">
+          <i class="far fa-images"></i>
+          <p>Random Images</p>
+        </a>
+      </li>
+      <li>
+        <a href="/animanga">
+          <i class="fi-rr-crown"></i>
+          <p>AniManga</p>
+        </a>
+      </li>
+      <li>
+        <a href="/stalking">
+          <i class="fa fa-fw fa-female"></i>
+          <p>Stalking</p>
+        </a>
+      </li>
+      <li>
+          <a href="/creator">
+            <i class="fi-rr-magic-wand"></i>
+            <p>Creator</p>
+          </a>
+        </li>
+      <li>
+        <a href="/entertainment">
+          <i class="fa fa-fw fa-smile"></i>
+          <p>Entertainment</p>
+        </a>
+      </li>
+      <li>
+      <a href="/primbon">
+          <i class="fa fa-fw fa-user-md"></i>
+          <p>Primbon</p>
+        </a>
+      </li>
+      <li>
+      <a href="/other">
+          <i class="fa fa-fw fa-random"></i>
+          <p>Other</p>
+        </a>
+      </li>
+      <li class="active" >
+      <a href="/ai">
+          <i class="fa fa-fw fa-robot"></i>
+          <p>AI</p>
+        </a>
+      </li>
+      <% if (isAdmin) { %>
+      <li>
+      <a href="/admin/listuser">
+          <i class="far fa-male"></i>
+          <p>List User</p>
+        </a>
+      </li>
+      <li style="margin-bottom: 8rem !important;" >
+      <a href="/admin/index">
+          <i class="far fa-feather"></i>
+          <p>Admin</p>
+        </a>
+      </li>
+<% } %>
+    </ul>
+  </div>
+</div>
+ <div class="main-panel">
+   <div class="navbar-minimize-fixed" style="opacity: 0;">
+      <button class="minimize-sidebar btn btn-link btn-just-icon">
+       <i class="tim-icons icon-align-center visible-on-sidebar-regular text-dark"></i>
+       <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini text-dark"></i>
+  </button>
+</div>
+<nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent" style="top: 0px;">
+    <div class="container-fluid">
+      <div class="navbar-wrapper">
+        <div class="navbar-minimize d-inline">
+          <button class="minimize-sidebar btn btn-link btn-just-icon" rel="tooltip" data-original-title="Sidebar toggle" data-placement="right" aria-describedby="tooltip723041">
+            <i class="tim-icons icon-align-center visible-on-sidebar-regular"></i>
+            <i class="tim-icons icon-bullet-list-67 visible-on-sidebar-mini"></i>
+          </button>
+        </div>
+        <div class="navbar-toggle d-inline">
+          <button type="button" class="navbar-toggler">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+        </div>
+        <a class="navbar-brand" href="#">AI</a>
+      </div>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+      </button>
+      <div class="navbar-collapse collapse" id="navigation" style>
+        <ul class="navbar-nav ml-auto text-dark">
+        	<li class="nav-item dropdown no-arrow text-dark">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="tim-icons icon-zoom-split text-dark"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right dropdown-search p-3 shadow animated--grow-in white-color" aria-labelledby="searchDropdown" style="border: none;">
+                    <form class="navbar-search" action="#" method="GET">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <button class="input-group-text" type="submit">
+                                    <i class="tim-icons icon-zoom-split text-dark"></i>
+                                </button>
+                            </div>
+                            <input type="text" class="form-control text-dark" name="q" placeholder="Search" autocomplete="off" required>
+                        </div>
+                    </form>
+                </div>
+            </li>
+            <li class="dropdown nav-item">            	
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                    <div class="photo">
+                        <img src="/images/new-coding-logo.jpg" alt="Profile Photo">
+                    </div>
+                    <b class="caret d-none d-lg-block d-xl-block"></b>
+                    <p class="d-lg-none text-dark"><%= username %></p>
+                </a>
+                <ul class="dropdown-menu dropdown-navbar dropdown-user">
+                    <div class="dropdown-user-scroll scrollbar-outer ">
+                        <li>
+                            <div class="user-box">
+                                <div class="avatar-lg"><img src="/images/new-coding-logo.jpg" alt="image profile" class="avatar-img rounded"></div>
+                                <div class="u-text text-dark">
+                                    <h4><%= username %></h4>
+                                    <p></p>
+                                    <p class="text-dark"><%= email %></p>
+                                </div>
+                            </div>
+                          <li>
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item text-dark" href="/profile"><i class="far fa-address-card text-success"></i>&nbsp;My Profile</a>                              
+                              <div class="dropdown-divider"></div>
+                              <a class="dropdown-item text-dark" href="/users/logout"><i class="far fa-sign-out text-danger"></i>&nbsp;Logout</a> 
+                          </li>
+                    </div>
+                </ul>                           
+            </li>
+          <li class="separator d-lg-none"></li>
+        </ul>
+      </div>
+    </div>
+   </nav>
+        <div class="content">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <h4 class="card-title">AI Documentation</h4>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead class="text-primary">
+                        <tr>
+                          <th>Feature</th>
+                          <th class="text-center">Method</th>
+                          <th class="text-center">Parameter</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-center">Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        
+                        <tr>
+                          <td>ling-2.6-flash</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/ling26?text=halo&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                        <tr>
+                          <td>nemotron-3-super-120b-a12b</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/nemotron3super120b?text=berapa huruf r di strawberry&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                        <tr>
+                          <td>gpt-oss-120b</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/gptoss120b?text=buat jawaban singkat&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                        <tr>
+                          <td>glm-4.5-air</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/glm45air?text=halo dunia&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                        <tr>
+                          <td>nemotron-3-nano-30b-a3b</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/nemotron3nano30b?text=jelaskan singkat javascript&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                        <tr>
+                          <td>nemotron-nano-12b-v2-vl</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/nemotronnano12bvl?text=apa isi gambar ini&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                        <tr>
+                          <td>qwen3-coder</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/qwen3coder?text=buat fungsi hello world javascript&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                        <tr>
+                          <td>llama-nemotron-embed-vl-1b-v2</td>
+                          <td style="color: #00f2c3" class="text-center">GET</td>
+                          <td class="text-center">apikey, text, imageUrl</td>
+                          <td class="text-center"><span class="badge badge-success" style="color: #27293d">ONLINE</span></td>
+                          <td class="text-center"><a type="button" class="text-success btn-sm btn-icon" href="/api/llamanemotronembedvl?text=what%20is%20in%20this%20image&imageUrl=https://live.staticflickr.com/3851/14825276609_098cac593d_b.jpg&apikey=<%= apikey %>" target="_blank" rel="nofollow" title="Try"><i class="far fa-play"></i></a></td>
+                        </tr>
+                       </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer fixed-bottom">
+          <div class="copyright text-center my-auto">
+  <span>
+    copyright with <i class="fal fa-heart text-danger"></i> by New Coding -
+  </span>
+  <span>
+    <a id="jam"></a>
+  </span>
+</div>
+
+        </footer>
+      </div>
+    </div>
+    <script
+      data-cfasync="false"
+      src="cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="/js/core/jquery.min.js"></script>
+    <script src="/js/core/popper.min.js"></script>
+    <script src="/js/core/bootstrap.min.js"></script>
+    <script src="/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <script src="/js/plugins/bootstrap-notify.js"></script>
+    <script src="/js/black-dashboard.min.js"></script>
+    <script src="/js/script.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.js"
+      integrity="sha512-OmBbzhZ6lgh87tQFDVBHtwfi6MS9raGmNvUNTjDIBb/cgv707v9OuBVpsN6tVVTLOehRFns+o14Nd0/If0lE/A=="
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
+

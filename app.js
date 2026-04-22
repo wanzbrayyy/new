@@ -237,6 +237,16 @@ app.get('/other', isAuthenticated, async (req, res) => {
   });
 });
 
+app.get('/ai', isAuthenticated, async (req, res) => {
+  let { apikey, username, email } = req.user
+  res.render('ai', {
+    username,
+    apikey,
+    email,
+    layout: 'ai'
+  });
+});
+
 app.get('/changelog', isAuthenticated, async (req, res) => { 
   const entries = await Changelog.find({}).sort({ updatedAt: -1, createdAt: -1 });
   let { username, email } = req.user

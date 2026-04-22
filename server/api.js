@@ -13,6 +13,7 @@ const { ghstalk, igstalk, wattpad, npminfo } = require('../features/stalking')
 const { tebakgambar, asahotak, susunkata, siapakahaku, tebakkata, tebakkalimat, tebaktebakan, tekateki, tebakbendera, tebakkimia, caklontong, tebaklirik, family100, tebakkabupaten, truthdare } = require('../features/entertainment')
 const { artinama, artimimpi, ramaljodoh, nomorhoki, zodiak, kecocokan_nama, kecocokan_nama_pasangan, tanggal_jadian_pernikahan, sifat_usaha_bisnis, rejeki_hoki_weton, pekerjaan_weton_lahir, ramalan_nasib, cek_potensi_penyakit, arti_kartu_tarot, petung_hari_baik, hari_sangar_taliwangke, primbon_hari_naas, rahasia_naga_hari, primbon_arah_rejeki, ramalan_peruntungan, weton_jawa, sifat_karakter_tanggal_lahir, potensi_keberuntungan, primbon_memancing_ikan, seberapagay } = require('../features/primbon')
 const { ppcouple, wangy, wangy2, nenen, simp, sherk, quotes, quotesnime, gi, giwp, herodetail, herolist } = require('../features/other')
+const { ling26, nemotron3super120b, gptoss120b, glm45air, nemotron3nano30b, nemotronnano12bvl, qwen3coder, llamaNemotronEmbedVl } = require('../features/ai')
 
 let creatorFeatures = null
 try {
@@ -230,6 +231,16 @@ try {
      router.get('/genshinweapon', giwp)
      router.get('/herodetail', herodetail)
      router.get('/herolist', herolist)
+
+     // AI
+     router.get('/ling26', ling26)
+     router.get('/nemotron3super120b', nemotron3super120b)
+     router.get('/gptoss120b', gptoss120b)
+     router.get('/glm45air', glm45air)
+     router.get('/nemotron3nano30b', nemotron3nano30b)
+     router.get('/nemotronnano12bvl', nemotronnano12bvl)
+     router.get('/qwen3coder', qwen3coder)
+     router.get('/llamanemotronembedvl', llamaNemotronEmbedVl)
      
      router.use(function (req, res, next) {
         if (res.statusCode == '200') {
